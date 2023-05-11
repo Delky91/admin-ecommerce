@@ -1,6 +1,7 @@
 import { useSession, signIn, signOut } from "next-auth/react";
+import Nav from "./nav";
 
-export default function Home() {
+export default function Layout({ children }) {
 	const { data: session } = useSession();
 
 	if (!session) {
@@ -13,10 +14,17 @@ export default function Home() {
 					>
 						Sign in with Google
 					</button>
+					<button onClick={() => signOut()}>Sign out</button>
 				</div>
 			</div>
 		);
 	}
 
-	return <div>Signed in as {session.user.name}</div>;
+	return (
+		<div className='bg-blue-900 min-h-screen flex'>
+			<Nav />
+			<div className='bg-white flex-grow mt-1 mr-2 rounded-lg p-4 mb-2'>{children}</div>
+			{/* <button onClick={() => signOut()}>Sign out</button> */}
+		</div>
+	);
 }
