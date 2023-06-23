@@ -1,10 +1,11 @@
 import multiparty from "multiparty"; //allow to use form-data in other words, allow me to use the photos that i upload
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
-const bucketName = "lomb-next-ecommerce";
 import fs from "fs";
 import mime from "mime-types";
+const bucketName = "lomb-next-ecommerce";
 
 export default async function handle(req, res) {
+	// Parse and extract the fields and attached files from an incoming HTTP request, returning a promise that resolves with the extracted data.
 	const form = new multiparty.Form();
 	const { fields, files } = await new Promise((resolve, reject) => {
 		form.parse(req, (err, fields, files) => {
@@ -15,7 +16,7 @@ export default async function handle(req, res) {
 
 	console.log("length:", files.file.length);
 
-	//lineas necesarias para conectar a aws bucket
+	//connect to aws
 	const client = new S3Client({
 		region: "us-east-2",
 		credentials: {
@@ -28,7 +29,9 @@ export default async function handle(req, res) {
 	const links = [];
 	for (const file of files.file) {
 		const ext = file.originalFilename.split(".").pop();
-		const newFileName = Date.now + "." + ext;
+		const newFileName = Date.now() + "." + ext;
+		console.log({ ext, file });
+
 		await client.send(
 			new PutObjectCommand({
 				Bucket: bucketName,
@@ -40,7 +43,7 @@ export default async function handle(req, res) {
 		);
 
 		const link = `https://${bucketName}.s3.amazonaws.com/${newFileName}`;
-		links.push(links);
+		links.push(link);
 	}
 
 	return res.json({ links });
