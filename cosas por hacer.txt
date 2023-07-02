@@ -1,0 +1,9 @@
+<<<<<<< HEAD
+4 arreglar en el caso que se desee editar la categoria (el edit)
+5 seguridad solo admin pueden borrar, quizas integrar otras autentificaciones
+=======
+2 crear la funcion delete para las categorias
+3 crear la alerta para la pagina de productos solo para delete
+4 arreglar en el caso que se desee editar la categoria (el edit)
+>>>>>>> c00ebfab2539813aac95a8f3de054f83a98df0ea
+

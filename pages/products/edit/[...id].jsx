@@ -12,7 +12,6 @@ export default function EditProductPage() {
 
 	useEffect(() => {
 		if (!id) return;
-
 		axios.get("/api/products?id=" + id).then((response) => {
 			setProductInfo(response.data);
 			setName(response.data.title);

@@ -1,20 +1,49 @@
 /* eslint-disable @next/next/no-img-element */
 import axios from "axios";
 import Layout from "../components/Layout";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
+import Spinner from "./Spinner";
+import { ReactSortable } from "react-sortablejs";
 
-export default function ProductForm({ _id, title: exTitle, description: exDescription, price: exPrice, images: exImages }) {
-	const [title, setTitle] = useState(exTitle || "");
-	const [description, setDescription] = useState(exDescription || "");
-	const [price, setPrice] = useState(exPrice || "");
-	const [images, setImages] = useState(exImages || []);
+export default function ProductForm({
+	_id,
+	title: existingTitle,
+	description: existingDescription,
+	price: existingPrice,
+	images: existingImages,
+	productCategory: assignedCategory,
+	properties: assignedProperties,
+}) {
+	const [title, setTitle] = useState(existingTitle || "");
+	const [description, setDescription] = useState(existingDescription || "");
+	const [productCategory, setProductCategory] = useState(assignedCategory || "");
+	const [price, setPrice] = useState(existingPrice || "");
+	const [images, setImages] = useState(existingImages || []);
+	const [categories, setCategories] = useState([]);
+	const [productProperties, setProductProperties] = useState(
+		assignedProperties || {}
+	);
 	const [goToProduct, setGoToProduct] = useState(false);
+	const [isUploading, setIsUploading] = useState(false);
 	const router = useRouter();
+
+	useEffect(() => {
+		axios.get("/api/categories").then((result) => {
+			setCategories(result.data);
+		});
+	}, []);
 
 	//send the info via axios to the backend
 	async function saveProduct(e) {
-		const data = { title, description, price };
+		const data = {
+			title,
+			description,
+			price,
+			images,
+			productCategory,
+			properties: productProperties,
+		};
 		e.preventDefault();
 		if (_id) {
 			//update
@@ -26,6 +55,7 @@ export default function ProductForm({ _id, title: exTitle, description: exDescri
 		setGoToProduct(true);
 	}
 
+	//push
 	if (goToProduct) {
 		router.push("/products");
 	}
@@ -34,7 +64,7 @@ export default function ProductForm({ _id, title: exTitle, description: exDescri
 		const files = e.target?.files;
 		if (files?.length > 0) {
 			const data = new FormData();
-
+			setIsUploading(true);
 			for (const file of files) {
 				data.append("file", file);
 			}
@@ -43,6 +73,34 @@ export default function ProductForm({ _id, title: exTitle, description: exDescri
 			setImages((oldImages) => {
 				return [...oldImages, ...res.data.links];
 			});
+			setIsUploading(false);
+		}
+	}
+	//funtion to make work of the sortable table
+	function updateImagesOrder(images) {
+		setImages(images);
+	}
+
+	function setProductProp(propName, value) {
+		setProductProperties((prev) => {
+			const newProductProps = { ...prev };
+			newProductProps[propName] = value;
+			return newProductProps;
+		});
+	}
+
+	//show and display the categories from the catery and his parents
+	const propertiesToFill = [];
+	if (categories.length > 0 && productCategory) {
+		let categoryInfo = categories.find(({ _id }) => _id === productCategory);
+		propertiesToFill.push(...categoryInfo.properties);
+		//this while check for any parent of a category until they dont have one
+		while (categoryInfo?.parent?._id) {
+			let parentCategory = categories.find(
+				({ _id }) => _id === categoryInfo?.parent?._id
+			);
+			propertiesToFill.push(...parentCategory.properties);
+			categoryInfo = parentCategory;
 		}
 	}
 
@@ -58,20 +116,72 @@ export default function ProductForm({ _id, title: exTitle, description: exDescri
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
 			/>
-			<label htmlFor='productImage'>photos</label>
-			<div className='mb-2 flex flex-wrap gap-2'>
-				{!!images?.length &&
-					images.map((link) => (
-						<div
-							key={link}
-							className='h-24'>
-							<img
-								src={link}
-								alt='producto'
-								className='rounded-lg'
-							/>
-						</div>
+			<label htmlFor='productCategory'>Category</label>
+			<select
+				name='productCategory'
+				id='productCategory'
+				value={productCategory}
+				onChange={(ev) => setProductCategory(ev.target.value)}>
+				<option value=''>Uncategorized</option>
+				{categories.length > 0 &&
+					categories.map((category) => (
+						<option
+							key={category._id}
+							value={category._id}>
+							{category.name}
+						</option>
 					))}
+			</select>
+			{propertiesToFill.length > 0 &&
+				propertiesToFill.map((p) => (
+					<div
+						key={p._id}
+						className='flex gap-1'>
+						<div>{p.name}</div>
+						<select
+							value={productProperties[p.name]}
+							onChange={(ev) => setProductProp(p.name, ev.target.value)}>
+							{p.value.map((value) => (
+								<option
+									value={value}
+									key={value + 1}>
+									{value}
+								</option>
+							))}
+						</select>
+					</div>
+				))}
+			<label htmlFor='productImage'>photos</label>
+			<div className='mb-2 flex flex-wrap gap-1'>
+				{/* sort images with the mouse need a list and a funtion to work */}
+				<ReactSortable
+					className='flex flex-wrap gap-1'
+					list={images}
+					setList={updateImagesOrder}>
+					{
+						/* check for images and map the array*/
+						!!images?.length &&
+							images.map((link) => (
+								<div
+									key={link}
+									className='h-24'>
+									<img
+										src={link}
+										alt='producto'
+										className='rounded-lg'
+									/>
+								</div>
+							))
+					}
+				</ReactSortable>
+				{
+					/* loading animation when uploading photos */
+					isUploading && (
+						<div className='h-24 flex items-center'>
+							<Spinner />
+						</div>
+					)
+				}
 				<label
 					htmlFor='productImage'
 					className='w-24 h-24 flex items-center justify-center text-sm gap-1 text-gray-700 rounded-lg bg-gray-300 hover:bg-blue-700 hover:text-white cursor-pointer'>
@@ -96,7 +206,6 @@ export default function ProductForm({ _id, title: exTitle, description: exDescri
 						onChange={uploadImage}
 					/>
 				</label>
-				{!images?.length && <div>No photos in this product</div>}
 			</div>
 			<label htmlFor='productDescription'>Product Description</label>
 			<textarea

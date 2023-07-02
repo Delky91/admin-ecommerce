@@ -1,6 +1,10 @@
-##WIP ecommerce-admin in NEXT.js
+## WIP ecommerce-admin in NEXT.js
 
 This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+
+## Author
+
+Luis Miño Bustos
 
 ## Getting Started
 

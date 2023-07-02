@@ -1,17 +1,23 @@
-/* eslint-disable react/jsx-key */
 import axios from "axios";
 import Layout from "./components/Layout";
 import Link from "next/link";
 import { useEffect, useState } from "react";
+import { data } from "autoprefixer";
+import deleteConfirmation from "./products/delete/DeleteConfirmation.js";
 
 export default function Products() {
 	const [products, setProducts] = useState([]);
+	const page = "products";
 
 	useEffect(() => {
-		axios.get("/api/products").then((response) => {
+		fetchProduct();
+	}, []);
+
+	function fetchProduct() {
+		axios.get(`/api/${page}`).then((response) => {
 			setProducts(response.data);
 		});
-	}, []);
+	}
 
 	return (
 		<Layout>
@@ -31,7 +37,7 @@ export default function Products() {
 					{products.map((product) => (
 						<tr key={product._id}>
 							<td>{product.title}</td>
-							<td>
+							<td className='flex gap-1'>
 								<Link href={"/products/edit/" + product._id}>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
@@ -48,7 +54,9 @@ export default function Products() {
 									</svg>
 									Edit
 								</Link>
-								<Link href={"/products/delete/" + product._id}>
+								<button
+									className='btn-primary flex items-center'
+									onClick={() => deleteConfirmation(product, page, fetchProduct)}>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
 										fill='none'
@@ -63,7 +71,7 @@ export default function Products() {
 										/>
 									</svg>
 									Delete
-								</Link>
+								</button>
 							</td>
 						</tr>
 					))}
