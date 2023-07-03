@@ -2,9 +2,13 @@ import multiparty from "multiparty"; //allow to use form-data in other words, al
 import { PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import fs from "fs";
 import mime from "mime-types";
+import { isAdminRequest } from "./auth/[...nextauth]";
+import { mongooseConnect } from "@/lib/mongoose";
 const bucketName = "lomb-next-ecommerce";
 
 export default async function handle(req, res) {
+	await mongooseConnect();
+	await isAdminRequest(req, res);
 	// Parse and extract the fields and attached files from an incoming HTTP request, returning a promise that resolves with the extracted data.
 	const form = new multiparty.Form();
 	const { fields, files } = await new Promise((resolve, reject) => {

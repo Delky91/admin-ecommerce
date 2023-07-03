@@ -10,11 +10,9 @@ export default function Layout({ children }) {
 				<div className='text-center w-full'>
 					<button
 						className='bg-white p-2 px-4 rounded-lg'
-						onClick={() => signIn("google")}
-					>
+						onClick={() => signIn("google")}>
 						Sign in with Google
 					</button>
-					<button onClick={() => signOut()}>Sign out</button>
 				</div>
 			</div>
 		);
@@ -23,8 +21,9 @@ export default function Layout({ children }) {
 	return (
 		<div className='bg-blue-900 min-h-screen flex'>
 			<Nav />
-			<div className='bg-white flex-grow mt-1 mr-2 rounded-lg p-4 mb-2'>{children}</div>
-			{/* <button onClick={() => signOut()}>Sign out</button> */}
+			<div className='bg-white flex-grow mt-1 mr-2 rounded-lg p-4 mb-2'>
+				{children}
+			</div>
 		</div>
 	);
 }

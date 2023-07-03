@@ -2,7 +2,6 @@ import axios from "axios";
 import Layout from "./components/Layout";
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { data } from "autoprefixer";
 import deleteConfirmation from "./products/delete/DeleteConfirmation.js";
 
 export default function Products() {
