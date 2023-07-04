@@ -108,7 +108,11 @@ export default function ProductForm({
 		<form
 			id='productForm'
 			onSubmit={saveProduct}>
-			<label htmlFor='productName'>Product Name</label>
+			<label
+				htmlFor='productName'
+				className=''>
+				Product Name
+			</label>
 			<input
 				type='text'
 				id='productName'
