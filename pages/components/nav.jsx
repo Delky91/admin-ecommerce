@@ -8,8 +8,8 @@ export default function Nav({ show }) {
 	const router = useRouter();
 	const { pathname } = router;
 	//clases const
-	const inactiveLink = "flex gap-1 p-1";
-	const activeLink = inactiveLink + " bg-white/10 text-white rounded-md";
+	const inactiveLink = "flex gap-1 p-1 hover:bg-white/10 rounded-md";
+	const activeLink = inactiveLink + " bg-white/10 text-white";
 	const inactiveIcon = "w-6 h-6";
 	const activeIcon = inactiveIcon + " text-white";
 
@@ -23,13 +23,13 @@ export default function Nav({ show }) {
 		<aside
 			className={
 				(show ? "left-0 " : "-left-full ") +
-				"text-white p-4 bg-primary fixed w-full h-screen top-0 md:static md:w-auto transition-all"
+				"text-white p-4 bg-primary fixed w-full h-screen top-0 md:static md:w-auto transition-all md:border-r md:border-white/20"
 			}>
-			<div className='mb-5 mr-4 flex justify-center'>
+			<div className='mb-5 mr-4 flex justify-center border-b border-white/40 pb-5'>
 				<Logo />
 			</div>
 
-			<nav className='flex flex-col gap-2 justify-center'>
+			<nav className='flex flex-col gap-3'>
 				<Link
 					href={"/"}
 					className={pathname === "/" ? activeLink : inactiveLink}>
@@ -99,7 +99,7 @@ export default function Nav({ show }) {
 				</Link>
 				<Link
 					href={"/settings"}
-					className={pathname.includes("/settings") ? activeLink : inactiveLink}>
+					className={+pathname.includes("/settings") ? activeLink : inactiveLink}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						fill='none'
@@ -120,8 +120,12 @@ export default function Nav({ show }) {
 					</svg>
 					Settings
 				</Link>
+
 				<button
-					className={inactiveLink}
+					className={
+						inactiveLink +
+						" mt-2 border shadow-sm border-white/20 w-28 justify-center mx-auto hover:shadow-lg"
+					}
 					onClick={() => logout()}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
