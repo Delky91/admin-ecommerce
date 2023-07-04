@@ -9,10 +9,10 @@ export default function Layout({ children }) {
 
 	if (!session) {
 		return (
-			<div className='bg-bgGray w-screen h-screen flex items-center'>
+			<div className='bg-bgColor w-screen h-screen flex items-center'>
 				<div className='text-center w-full'>
 					<button
-						className='bg-white p-2 px-4 rounded-lg'
+						className='bg-primary p-2 px-4 rounded-lg shadow shadow-black border-1 border-white hover:shadow-inner hover:font-bold text-white'
 						onClick={() => signIn("google")}>
 						Sign in with Google
 					</button>
@@ -22,7 +22,7 @@ export default function Layout({ children }) {
 	}
 
 	return (
-		<div className='bg-bgGray min-h-screen'>
+		<div className='bg-bgColor min-h-screen'>
 			<div className='md:hidden flex items-center'>
 				<button
 					type='button'
