@@ -12,7 +12,7 @@ export default function Layout({ children }) {
 			<div className='bg-bgColor w-screen h-screen flex items-center'>
 				<div className='text-center w-full'>
 					<button
-						className='bg-primary p-2 px-4 rounded-lg shadow shadow-black hover:font-bold text-white hover:bg-slate-400 hover:text-primary'
+						className='text-white border p-2 px-4 rounded-lg shadow shadow-black hover:font-bold hover:bg-primary '
 						onClick={() => signIn("google")}>
 						Sign in with Google
 					</button>

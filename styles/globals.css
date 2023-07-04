@@ -32,6 +32,10 @@ img {
 	@apply bg-primary text-white px-4 rounded-md py-1;
 }
 
+.btn-accent {
+	@apply text-white px-4 rounded-md py-1 bg-accent hover:shadow hover:shadow-white;
+}
+
 .btn-red {
 	@apply bg-red-800 text-white;
 }
@@ -46,16 +50,13 @@ img {
 }
 
 table.basic {
-	@apply w-full bg-white rounded-sm shadow-md;
+	@apply w-full bg-white/10 rounded-lg shadow-md;
 }
 table.basic thead tr td {
-	@apply text-sm text-gray-700 uppercase border-b border-gray-200 px-4 py-2 font-bold;
-}
-table.basic tr td {
-	@apply px-4 py-1;
+	@apply text-sm text-white uppercase border-b border-gray-200 font-bold;
 }
 
 table.basic a,
 table.basic button {
-	@apply text-white text-sm py-1 rounded-md inline-flex gap-1 mx-1 items-center bg-gray-600 mt-1 md:mt-0;
+	@apply text-white text-sm py-1 rounded-md inline-flex gap-1 mx-1 items-center mt-1 md:mt-0;
 }

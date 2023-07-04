@@ -20,26 +20,26 @@ export default function Products() {
 
 	return (
 		<Layout>
-			<Link
-				className='btn-primary'
-				href={"./products/new"}>
-				Add new product
-			</Link>
-			<table className='basic mt-2'>
+			<h2 className='flex justify-center text-white font-bold md:justify-start md:ml-2'>
+				Products
+			</h2>
+			<table className='basic my-5'>
 				<thead>
 					<tr>
-						<td>Product name</td>
-						<td></td>
+						<td className='py-2 pl-4'>Product name</td>
+						<td>Options</td>
 					</tr>
 				</thead>
 				<tbody>
 					{products.map((product) => (
-						<tr key={product._id}>
-							<td>{product.title}</td>
-							<td className='flex gap-1'>
+						<tr
+							key={product._id}
+							className=''>
+							<td className='text-white pl-4'>{product.title}</td>
+							<td className='flex gap-1 border-l border-gray-200/50 py-1'>
 								<Link
 									href={"/products/edit/" + product._id}
-									className='px-6'>
+									className='px-4 border hover:bg-primary hover:shadow-sm hover:shadow-white'>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
 										fill='none'
@@ -56,7 +56,7 @@ export default function Products() {
 									Edit
 								</Link>
 								<button
-									className='btn-primary flex items-center'
+									className='btn-accent flex items-center shadow-sm hover:text-accent hover:bg-white hover:shadow-accent'
 									onClick={() => deleteConfirmation(product, page, fetchProduct)}>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
@@ -78,6 +78,11 @@ export default function Products() {
 					))}
 				</tbody>
 			</table>
+			<Link
+				className='text-white border px-4 rounded-md py-1 shadow hover:shadow-white/30 hover:shadow-md hover:bg-primary'
+				href={"./products/new"}>
+				Add new product
+			</Link>
 		</Layout>
 	);
 }

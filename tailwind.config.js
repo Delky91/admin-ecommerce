@@ -12,6 +12,8 @@ module.exports = {
 				highligts: "#EAE8FB",
 				txColor: "#ebefdc",
 				bgColor: "#494867",
+				accent: "#3d6ab3",
+				atention: "#71b7ae",
 			},
 		},
 	},
