@@ -21,7 +21,7 @@ export default function Products() {
 	return (
 		<Layout>
 			<Link
-				className='bg-blue-900 text-white rounded-md py-1 px-2'
+				className='btn-primary'
 				href={"./products/new"}>
 				Add new product
 			</Link>
@@ -37,7 +37,9 @@ export default function Products() {
 						<tr key={product._id}>
 							<td>{product.title}</td>
 							<td className='flex gap-1'>
-								<Link href={"/products/edit/" + product._id}>
+								<Link
+									href={"/products/edit/" + product._id}
+									className='px-6'>
 									<svg
 										xmlns='http://www.w3.org/2000/svg'
 										fill='none'

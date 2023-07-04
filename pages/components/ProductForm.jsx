@@ -136,22 +136,26 @@ export default function ProductForm({
 				propertiesToFill.map((p) => (
 					<div
 						key={p._id}
-						className='flex gap-1'>
-						<div>{p.name}</div>
-						<select
-							value={productProperties[p.name]}
-							onChange={(ev) => setProductProp(p.name, ev.target.value)}>
-							{p.value.map((value) => (
-								<option
-									value={value}
-									key={value + 1}>
-									{value}
-								</option>
-							))}
-						</select>
+						className=''>
+						<label>{p.name[0].toUpperCase() + p.name.substring(1)}</label>
+						<div>
+							<select
+								value={productProperties[p.name]}
+								onChange={(ev) => setProductProp(p.name, ev.target.value)}>
+								{p.value.map((value) => (
+									<option
+										value={value}
+										key={value + 1}>
+										{value}
+									</option>
+								))}
+							</select>
+						</div>
 					</div>
 				))}
-			<label htmlFor='productImage'>photos</label>
+
+			<label htmlFor='productImage'>Photos</label>
+
 			<div className='mb-2 flex flex-wrap gap-1'>
 				{/* sort images with the mouse need a list and a funtion to work */}
 				<ReactSortable
@@ -164,7 +168,7 @@ export default function ProductForm({
 							images.map((link) => (
 								<div
 									key={link}
-									className='h-24'>
+									className='h-24 bg-white shadow border border-gray-200 rounded-lg'>
 									<img
 										src={link}
 										alt='producto'
@@ -184,7 +188,7 @@ export default function ProductForm({
 				}
 				<label
 					htmlFor='productImage'
-					className='w-24 h-24 flex items-center justify-center text-sm gap-1 text-gray-700 rounded-lg bg-gray-300 hover:bg-blue-700 hover:text-white cursor-pointer'>
+					className='w-24 h-24 flex flex-col items-center justify-center text-sm gap-1 text-gray-700 rounded-lg bg-white shadow border border-gray-200 hover:bg-gray-300 hover:text-primary cursor-pointer'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						fill='none'
@@ -198,7 +202,7 @@ export default function ProductForm({
 							d='M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5'
 						/>
 					</svg>
-					<div>Upload</div>
+					<div>Add Imagen</div>
 					<input
 						type='file'
 						id='productImage'
