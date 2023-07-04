@@ -9,7 +9,7 @@ export default function Nav({ show }) {
 	const { pathname } = router;
 	//clases const
 	const inactiveLink = "flex gap-1 p-1";
-	const activeLink = inactiveLink + " bg-highlight text-black rounded-md";
+	const activeLink = inactiveLink + " bg-white text-black rounded-md";
 	const inactiveIcon = "w-6 h-6";
 	const activeIcon = inactiveIcon + " text-primary";
 
@@ -23,7 +23,7 @@ export default function Nav({ show }) {
 		<aside
 			className={
 				(show ? "left-0 " : "-left-full ") +
-				"text-gray-500 p-4 fixed w-full bg-bgGray h-full top-0 md:static md:w-auto transition-all"
+				"text-white p-4 bg-primary fixed w-full h-screen top-0 md:static md:w-auto transition-all"
 			}>
 			<div className='mb-4 mr-4'>
 				<Logo />
