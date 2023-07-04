@@ -9,9 +9,9 @@ export default function Nav({ show }) {
 	const { pathname } = router;
 	//clases const
 	const inactiveLink = "flex gap-1 p-1";
-	const activeLink = inactiveLink + " bg-white text-black rounded-md";
+	const activeLink = inactiveLink + " bg-white/10 text-white rounded-md";
 	const inactiveIcon = "w-6 h-6";
-	const activeIcon = inactiveIcon + " text-primary";
+	const activeIcon = inactiveIcon + " text-white";
 
 	//close session
 	async function logout() {
@@ -25,11 +25,11 @@ export default function Nav({ show }) {
 				(show ? "left-0 " : "-left-full ") +
 				"text-white p-4 bg-primary fixed w-full h-screen top-0 md:static md:w-auto transition-all"
 			}>
-			<div className='mb-4 mr-4'>
+			<div className='mb-5 mr-4 flex justify-center'>
 				<Logo />
 			</div>
 
-			<nav className='flex flex-col gap-2 '>
+			<nav className='flex flex-col gap-2 justify-center'>
 				<Link
 					href={"/"}
 					className={pathname === "/" ? activeLink : inactiveLink}>
