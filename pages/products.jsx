@@ -39,7 +39,6 @@ export default function Products() {
 									<Link
 										href={"/products/edit/" + product._id}
 										className='btn-accent'>
-										{/*bg-bgColor px-4 border hover:bg-white/10 hover:shadow-sm hover:shadow-white/10*/}
 										<svg
 											xmlns='http://www.w3.org/2000/svg'
 											fill='none'
