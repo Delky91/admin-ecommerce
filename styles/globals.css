@@ -24,14 +24,17 @@ img {
 	max-height: 100%;
 }
 
-.btn-primary {
-	@apply bg-primary text-white px-4 rounded-md py-1;
+table .btn-primary {
+	@apply bg-primary text-white px-4 rounded-md py-1 border border-white/40 hover:bg-white/90 hover:text-primary hover:border-primary;
 }
 
-.btn-accent {
-	@apply text-white px-4 rounded-md py-1 bg-accent hover:shadow hover:shadow-white;
+table .btn-accent {
+	@apply text-white px-4 rounded-md py-1 border border-white/20 bg-accent hover:text-accent hover:bg-white/90 hover:border-accent;
 }
 
+.btn-layout {
+	@apply border border-white/20 hover:shadow-lg py-1 px-2 bg-primary text-txColor hover:bg-indigo-900 hover:border-white rounded-md hover:font-bold;
+}
 .btn-red {
 	@apply bg-red-800 text-white;
 }
@@ -46,10 +49,10 @@ img {
 }
 
 table.basic {
-	@apply w-full bg-white/10 rounded-lg shadow-md;
+	@apply w-full bg-white/10;
 }
 table.basic thead tr td {
-	@apply text-sm text-white uppercase border-b border-gray-200 font-bold;
+	@apply text-sm text-white uppercase border-b border-white/20 font-bold;
 }
 
 table.basic a,
