@@ -21,6 +21,7 @@ export default function Products() {
 	return (
 		<Layout>
 			<h2 className='text-txColor font-bold md:ml-2 text-center'>Products</h2>
+
 			<div className=' rounded-md my-5 md:w-2/3 mx-auto'>
 				<table className='basic rounded-lg'>
 					<thead>
@@ -84,6 +85,9 @@ export default function Products() {
 						Add new product
 					</Link>
 				</div>
+				<p className='text-center text-txColor font-bold'>
+					ESTE DEBE SER CAMBIADO POR CARD EN VERSION FINAL
+				</p>
 			</div>
 		</Layout>
 	);

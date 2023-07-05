@@ -122,10 +122,7 @@ export default function Nav({ show }) {
 				</Link>
 
 				<button
-					className={
-						inactiveLink +
-						" mt-2 border shadow-sm border-white/20 w-28 justify-center mx-auto hover:shadow-lg"
-					}
+					className='flex gap-1 p-1 hover:bg-white/10 rounded-md	mt-2 border shadow-sm border-white/20 w-28 justify-center mx-auto hover:shadow-lg'
 					onClick={() => logout()}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'

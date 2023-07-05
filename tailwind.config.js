@@ -12,7 +12,7 @@ module.exports = {
 				txColor: "#ebefdc",
 				bgColor: "#494867",
 				accent: "#3d6ab3",
-				atention: "#3a9898",
+				atention: "#D09CFA",
 			},
 		},
 	},
