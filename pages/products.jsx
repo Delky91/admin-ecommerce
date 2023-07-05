@@ -20,7 +20,7 @@ export default function Products() {
 
 	return (
 		<Layout>
-			<h2 className='text-white font-bold md:ml-2 text-center'>Products</h2>
+			<h2 className='text-txColor font-bold md:ml-2 text-center'>Products</h2>
 			<div className=' rounded-md my-5 md:w-2/3 mx-auto'>
 				<table className='basic rounded-lg'>
 					<thead>
@@ -34,7 +34,7 @@ export default function Products() {
 							<tr
 								key={product._id}
 								className=''>
-								<td className='text-white pl-4'>{product.title}</td>
+								<td className='text-txColor pl-4'>{product.title}</td>
 								<td className='flex gap-1 border-l border-white/10 py-1'>
 									<Link
 										href={"/products/edit/" + product._id}

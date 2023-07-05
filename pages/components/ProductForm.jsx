@@ -233,7 +233,7 @@ export default function ProductForm({
 				onChange={(e) => setPrice(e.target.value)}
 			/>
 			<button
-				className='btn-primary'
+				className='btn-layout'
 				type='submit'>
 				Save
 			</button>

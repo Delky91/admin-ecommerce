@@ -9,11 +9,10 @@ module.exports = {
 		extend: {
 			colors: {
 				primary: "#463172",
-				highligts: "#EAE8FB",
 				txColor: "#ebefdc",
 				bgColor: "#494867",
 				accent: "#3d6ab3",
-				atention: "#71b7ae",
+				atention: "#3a9898",
 			},
 		},
 	},
