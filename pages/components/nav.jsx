@@ -122,9 +122,9 @@ export default function Nav({ show }) {
 					</svg>
 					Settings
 				</Link>
-				<div className='rounded-full mx-auto w-2/3 shadow-md shadow-black/50'>
+				<div className='rounded-full mx-auto mt-5 w-2/3'>
 					<button
-						className='btn-main flex gap-2 justify-center mx-auto w-full'
+						className='btn btn-nav flex gap-2 justify-center mx-auto w-full'
 						onClick={() => logout()}>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'

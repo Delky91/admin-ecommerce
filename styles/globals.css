@@ -24,24 +24,35 @@ img {
 	max-height: 100%;
 }
 
+aside {
+	@apply text-txColor md:bg-primary/60 w-full h-screen bg-primary;
+}
+.btn {
+	@apply transition-all duration-200 ease-in px-4;
+}
+
+.bgBackground {
+	@apply bg-gradient-to-tr from-bgFrom via-bgTo  to-bgColor;
+}
+
+.btn-login {
+	@apply flex gap-2 text-txColor py-2 rounded-lg border border-white/20 hover:border-white/70 shadow shadow-primary hover:shadow-c-hover bg-mid/90 hover:bg-primary/90;
+}
+
 .btn-delete {
-	@apply bg-primary px-4 rounded-md py-1 border border-white/20 hover:bg-mid hover:shadow-c-hover;
+	@apply bg-black/10 rounded-md py-1 border border-white/20 hover:bg-secundary hover:shadow-md hover:border-white/50;
 }
 
 .btn-edit {
-	@apply text-txColor px-4 rounded-md py-1 border border-white/20 bg-mid hover:shadow-c-hover shadow-primary hover:bg-secundary;
-}
-
-aside {
-	@apply text-txColor bg-primary w-full h-screen;
+	@apply text-txColor rounded-md py-1 border border-white/20 bg-mid/50 hover:shadow-md shadow-primary hover:bg-secundary;
 }
 
 .btn-layout {
-	@apply bg-primary hover:bg-mid rounded-full px-3 py-1 text-txColor shadow-md shadow-black/40 hover:shadow-c-hover border border-white/20;
+	@apply bg-primary/50 hover:bg-mid/50 rounded-full py-1 text-txColor shadow-md shadow-black/40 hover:shadow-c-hover border border-white/20;
 }
 
-.btn-main {
-	@apply bg-primary  hover:shadow-c-hover px-3 py-1 rounded-full border border-white/20 hover:bg-mid;
+.btn-nav {
+	@apply bg-bgTo/30 shadow shadow-black/20 hover:shadow-md py-1 rounded-full border border-white/20 hover:bg-bgTo/60 hover:shadow-black/40;
 }
 
 .inactiveLink {
@@ -60,7 +71,7 @@ aside {
 }
 
 table.basic {
-	@apply w-full bg-primary shadow-lg shadow-black/40;
+	@apply w-full bg-primary/60 shadow-lg shadow-black/40;
 }
 table.basic thead tr td {
 	@apply text-sm text-txColor uppercase border-b border-white/20 font-bold;
