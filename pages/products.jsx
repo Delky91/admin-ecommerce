@@ -21,7 +21,6 @@ export default function Products() {
 	return (
 		<Layout>
 			<h2 className='text-txColor font-bold md:ml-2 text-center'>Products</h2>
-
 			<div className=' rounded-md my-5 md:w-2/3 mx-auto'>
 				<table className='basic rounded-lg'>
 					<thead>
@@ -36,17 +35,17 @@ export default function Products() {
 								key={product._id}
 								className=''>
 								<td className='text-txColor pl-4'>{product.title}</td>
-								<td className='flex gap-1 border-l border-white/10 py-1'>
+								<td className='flex gap-1 border-l border-white/20 py-1'>
 									<Link
 										href={"/products/edit/" + product._id}
-										className='btn-accent'>
+										className='btn-edit'>
 										<svg
 											xmlns='http://www.w3.org/2000/svg'
 											fill='none'
 											viewBox='0 0 24 24'
 											strokeWidth={1.5}
 											stroke='currentColor'
-											className='w-4 h-4'>
+											className='sm-icon'>
 											<path
 												strokeLinecap='round'
 												strokeLinejoin='round'
@@ -56,7 +55,7 @@ export default function Products() {
 										Edit
 									</Link>
 									<button
-										className=' btn-primary flex items-center shadow-sm '
+										className=' btn-delete flex items-center'
 										onClick={() => deleteConfirmation(product, page, fetchProduct)}>
 										<svg
 											xmlns='http://www.w3.org/2000/svg'
@@ -64,7 +63,7 @@ export default function Products() {
 											viewBox='0 0 24 24'
 											strokeWidth={1.5}
 											stroke='currentColor'
-											className='w-4 h-4'>
+											className='sm-icon'>
 											<path
 												strokeLinecap='round'
 												strokeLinejoin='round'

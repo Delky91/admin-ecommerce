@@ -24,32 +24,43 @@ img {
 	max-height: 100%;
 }
 
-table .btn-primary {
-	@apply bg-primary text-txColor px-4 rounded-md py-1 border border-white/40 hover:bg-white/90 hover:text-primary hover:border-primary;
+.btn-delete {
+	@apply bg-primary px-4 rounded-md py-1 border border-white/20 hover:bg-mid hover:shadow-c-hover;
 }
 
-table .btn-accent {
-	@apply text-txColor px-4 rounded-md py-1 border border-white/20 bg-accent hover:text-accent hover:bg-white/90 hover:border-accent;
+.btn-edit {
+	@apply text-txColor px-4 rounded-md py-1 border border-white/20 bg-mid hover:shadow-c-hover shadow-primary hover:bg-secundary;
+}
+
+aside {
+	@apply text-txColor bg-primary w-full h-screen;
 }
 
 .btn-layout {
-	@apply border border-white/20 hover:shadow-lg py-1 px-2 bg-primary text-txColor hover:bg-indigo-900 hover:border-white rounded-md hover:font-bold;
-}
-.btn-red {
-	@apply bg-red-800 text-txColor;
+	@apply bg-primary hover:bg-mid rounded-full px-3 py-1 text-txColor shadow-md shadow-black/40 hover:shadow-c-hover border border-white/20;
 }
 
-.btn-default {
-	@apply bg-gray-600 text-txColor px-4 rounded-sm py-1;
+.btn-main {
+	@apply bg-primary  hover:shadow-c-hover px-3 py-1 rounded-full border border-white/20 hover:bg-mid;
 }
 
-.btn-red,
-.btn-default {
-	@apply px-4 py-1 rounded-md;
+.inactiveLink {
+	@apply flex gap-1 p-1 hover:bg-white/10 rounded-md;
+}
+.activeLink {
+	@apply inactiveLink bg-white/10 text-txColor border border-secundary/10 shadow;
+}
+
+.icon {
+	@apply w-6 h-6;
+}
+
+.sm-icon {
+	@apply w-4 h-4;
 }
 
 table.basic {
-	@apply w-full bg-white/10;
+	@apply w-full bg-primary shadow-lg shadow-black/40;
 }
 table.basic thead tr td {
 	@apply text-sm text-txColor uppercase border-b border-white/20 font-bold;

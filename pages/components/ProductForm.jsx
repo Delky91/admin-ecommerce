@@ -233,7 +233,7 @@ export default function ProductForm({
 				onChange={(e) => setPrice(e.target.value)}
 			/>
 			<button
-				className='border px-3 py-1 bg-atention rounded-md'
+				className='border px-3 py-1 bg-accent rounded-md text-txColor hover:bg-white/20 shadow hover:shadow-md font-bold'
 				type='submit'>
 				Save
 			</button>
