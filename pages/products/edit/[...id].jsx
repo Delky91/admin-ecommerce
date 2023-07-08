@@ -20,10 +20,10 @@ export default function EditProductPage() {
 
 	return (
 		<Layout>
-			<h1>
-				<strong>Edit {name}</strong>
-			</h1>
-			{productInfo && <ProductForm {...productInfo} />}
+			<div className='bg-primary/60 rounded-lg px-5 py-3 shadow-lg shadow-black/30 md:w-9/12 mx-auto md:mt-10 border border-white/20'>
+				<h2 className=''>Edit {name}</h2>
+				{productInfo && <ProductForm {...productInfo} />}
+			</div>
 		</Layout>
 	);
 }

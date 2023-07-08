@@ -7,6 +7,11 @@ export default function Layout({ children }) {
 	const { data: session } = useSession();
 	const [showNav, setShowNav] = useState(false);
 
+	// Función para cerrar el menú
+	const closeNav = () => {
+		setShowNav(false);
+	};
+
 	if (!session) {
 		return (
 			<div className='bgBackground w-screen h-screen flex justify-center flex-col'>
@@ -49,13 +54,13 @@ export default function Layout({ children }) {
 			<div className='md:hidden flex items-center'>
 				<button
 					type='button'
-					className='p-4'
+					className='fixed hover:border rounded-full p-1 hover:border-white/20 left-4 top-2 hover:bg-bgFrom/20'
 					onClick={() => setShowNav(true)}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 24 24'
 						fill='currentColor'
-						className='w-6 h-6 text-white'>
+						className='icon text-white'>
 						<path
 							fillRule='evenodd'
 							d='M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z'
@@ -64,12 +69,15 @@ export default function Layout({ children }) {
 					</svg>
 				</button>
 
-				<div className='flex grow justify-center mr-6'>
+				<div className='flex grow justify-center md:mr-6 mt-3'>
 					<Logo />
 				</div>
 			</div>
 			<div className=' flex'>
-				<Nav show={showNav} />
+				<Nav
+					show={showNav}
+					closeNav={closeNav}
+				/>
 				<div className=' flex-grow p-4'>{children}</div>
 			</div>
 		</div>

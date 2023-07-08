@@ -20,22 +20,24 @@ export default function Products() {
 
 	return (
 		<Layout>
-			<h2 className='text-txColor font-bold md:ml-2 text-center'>Products</h2>
-			<div className=' rounded-md my-5 md:w-3/4 mx-auto'>
-				<table className='basic rounded-lg'>
+			<h2 className='md:ml-2 text-center'>Products</h2>
+			<div className='tableContainer'>
+				<table className='basic'>
 					<thead>
 						<tr>
-							<td className='py-2 pl-4'>Product name</td>
-							<td>Options</td>
+							<td className='py-2 w-1/2'>Product name</td>
+							<td className=''>Options</td>
 						</tr>
 					</thead>
 					<tbody>
-						{products.map((product) => (
+						{products.map((product, index) => (
 							<tr
 								key={product._id}
-								className=''>
+								className={
+									index !== products.length - 1 ? "border-b border-white/10" : ""
+								}>
 								<td className='text-txColor pl-4'>{product.title}</td>
-								<td className='flex gap-1 border-l border-white/20 py-1'>
+								<td className='flex gap-1 border-l border-white/20 py-1 justify-center'>
 									<Link
 										href={"/products/edit/" + product._id}
 										className='btn btn-edit'>
@@ -77,17 +79,17 @@ export default function Products() {
 						))}
 					</tbody>
 				</table>
-				<div className='py-3 mt-3'>
-					<Link
-						className='btn btn-layout'
-						href={"./products/new"}>
-						Add new product
-					</Link>
-				</div>
-				<p className='text-center text-txColor font-bold'>
-					ESTE DEBE SER CAMBIADO POR CARD EN VERSION FINAL
-				</p>
 			</div>
+			<div className='py-3 mt-3 md:ml-[10%]'>
+				<Link
+					className='btn btn-layout'
+					href={"./products/new"}>
+					Add new product
+				</Link>
+			</div>
+			<p className='text-center text-txColor font-bold'>
+				ESTE DEBE SER CAMBIADO POR CARD EN VERSION FINAL
+			</p>
 		</Layout>
 	);
 }

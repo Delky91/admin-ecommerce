@@ -3,13 +3,10 @@ import { useRouter } from "next/router";
 import { signOut } from "next-auth/react";
 import Logo from "./Logo.jsx";
 
-export default function Nav({ show }) {
+export default function Nav({ show, closeNav }) {
 	//router variables
 	const router = useRouter();
 	const { pathname } = router;
-
-	const inactiveIcon = "w-6 h-6";
-	const activeIcon = inactiveIcon;
 
 	//close session
 	async function logout() {
@@ -23,6 +20,24 @@ export default function Nav({ show }) {
 				(show ? "left-0 " : "-left-full ") +
 				"p-4 fixed top-0 md:static md:w-auto transition-all md:border-r md:border-white/20"
 			}>
+			{show === true && (
+				<button
+					className='fixed hover:border rounded-full hover:border-white/20 p-1 hover:bg-secundary/50'
+					onClick={() => closeNav()}>
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						viewBox='0 0 24 24'
+						fill='none'
+						strokeWidth='1.5'
+						stroke='currentColor'
+						className='icon'>
+						<path
+							strokeLinecap='round'
+							strokeLinejoin='round'
+							d='M6 18L18 6M6 6l12 12'></path>
+					</svg>
+				</button>
+			)}
 			<div className='mb-5 mr-4 flex justify-center border-b border-white/40 pb-5'>
 				<Logo />
 			</div>

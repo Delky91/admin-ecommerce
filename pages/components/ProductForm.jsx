@@ -107,23 +107,30 @@ export default function ProductForm({
 	return (
 		<form
 			id='productForm'
-			onSubmit={saveProduct}>
+			onSubmit={saveProduct}
+			className='flex flex-col'>
 			<label
 				htmlFor='productName'
-				className=''>
+				className='mb-1'>
 				Product Name
 			</label>
 			<input
 				type='text'
 				id='productName'
 				placeholder='product name'
+				className='mb-3'
 				value={title}
 				onChange={(e) => setTitle(e.target.value)}
 			/>
-			<label htmlFor='productCategory'>Category</label>
+			<label
+				htmlFor='productCategory'
+				className='mb-1'>
+				Category
+			</label>
 			<select
 				name='productCategory'
 				id='productCategory'
+				className='mb-3'
 				value={productCategory}
 				onChange={(ev) => setProductCategory(ev.target.value)}>
 				<option value=''>Uncategorized</option>
@@ -158,9 +165,12 @@ export default function ProductForm({
 					</div>
 				))}
 
-			<label htmlFor='productImage'>Photos</label>
-
-			<div className='mb-2 flex flex-wrap gap-1'>
+			<label
+				htmlFor='productImage'
+				className='mb-1'>
+				Photos
+			</label>
+			<div className='mb-3 flex flex-wrap gap-1'>
 				{/* sort images with the mouse need a list and a funtion to work */}
 				<ReactSortable
 					className='flex flex-wrap gap-1'
@@ -192,14 +202,14 @@ export default function ProductForm({
 				}
 				<label
 					htmlFor='productImage'
-					className='w-24 h-24 flex flex-col items-center justify-center text-sm gap-1 text-gray-700 rounded-lg bg-white shadow border border-gray-200 hover:bg-gray-300 hover:text-primary cursor-pointer'>
+					className='btn-upload'>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						fill='none'
 						viewBox='0 0 24 24'
 						strokeWidth={1.5}
 						stroke='currentColor'
-						className='w-6 h-6'>
+						className='icon'>
 						<path
 							strokeLinecap='round'
 							strokeLinejoin='round'
@@ -224,7 +234,7 @@ export default function ProductForm({
 				value={description}
 				onChange={(e) => setDescription(e.target.value)}
 			/>
-			<label htmlFor='productPrice'>Product Price</label>
+			<label htmlFor='productPrice' className="mb-1">Product Price</label>
 			<input
 				id='productPrice'
 				placeholder='price'
@@ -233,7 +243,7 @@ export default function ProductForm({
 				onChange={(e) => setPrice(e.target.value)}
 			/>
 			<button
-				className='border px-3 py-1 bg-accent rounded-md text-txColor hover:bg-white/20 shadow hover:shadow-md font-bold'
+				className='btn btn-login mx-auto w-60 mt-3 mb-2 justify-center'
 				type='submit'>
 				Save
 			</button>
