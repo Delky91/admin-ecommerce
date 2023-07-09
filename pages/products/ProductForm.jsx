@@ -2,7 +2,7 @@
 import axios from "axios";
 import { useState, useEffect, useReducer } from "react";
 import { useRouter } from "next/router";
-import Spinner from "./Spinner";
+import Spinner from "../components/Spinner";
 import { ReactSortable } from "react-sortablejs";
 
 export default function ProductForm({
@@ -15,12 +15,12 @@ export default function ProductForm({
 	properties: assignedProperties,
 }) {
 	const INITIAL_STATE = {
-		title: existingTitle || "", //text
-		description: existingDescription || "", //text
-		productCategory: assignedCategory || "", //category options
-		price: existingPrice || "", //number
-		images: existingImages || [], //images
-		categories: [], //category from parent
+		title: existingTitle || "",
+		description: existingDescription || "",
+		productCategory: assignedCategory || "",
+		price: existingPrice || "",
+		images: existingImages || [],
+		categories: [],
 		productProperties: assignedProperties || {},
 	};
 
@@ -32,11 +32,22 @@ export default function ProductForm({
 					[action.payload.name]: action.payload.value,
 				};
 			case "CHANGE_IMAGES": //images
-				return {};
+				return {
+					...state,
+					images: action.payload,
+				};
 			case "LOAD_CATEGORIES":
 				return {
 					...state,
 					categories: action.payload,
+				};
+			case "SET_PRODUCT_PROPERTIES":
+				return {
+					...state,
+					productProperties: {
+						...state.productProperties,
+						[action.payload.propName]: action.payload.value,
+					},
 				};
 			default:
 				return state;
@@ -45,17 +56,8 @@ export default function ProductForm({
 
 	//USEREDUCER
 	const [state, dispatch] = useReducer(formReducer, INITIAL_STATE);
-
-	//USESTATE
-
-	// const [productCategory, setProductCategory] = useState(assignedCategory || "");
-	// const [images, setImages] = useState(existingImages || []);
-	// const [categories, setCategories] = useState([]);
-	// const [productProperties, setProductProperties] = useState(
-	// 	assignedProperties || {}
-	// );
-	const [goToProduct, setGoToProduct] = useState(false); //No poner en reducer
-	const [isUploading, setIsUploading] = useState(false); //No poner en reducer
+	const [goToProduct, setGoToProduct] = useState(false);
+	const [isUploading, setIsUploading] = useState(false);
 	const router = useRouter();
 
 	const handleTextChange = (e) => {
@@ -65,24 +67,29 @@ export default function ProductForm({
 		});
 	};
 
-	console.log(state); //BORRAR AL TERMINAR EL USEREDUCER
-
 	useEffect(() => {
-		axios.get("/api/categories").then((result) => {
+		const fetchCategories = async () => {
+			const result = await axios.get("/api/categories");
 			dispatch({ type: "LOAD_CATEGORIES", payload: result.data });
-		});
+		};
+
+		fetchCategories();
 	}, []);
 
-	//send the info via axios to the backend
 	async function saveProduct(e) {
+		//check if category is value "" so we can changed to null  or the value that have
+		const productCat =
+			state.productCategory === "" ? null : state.productCategory;
+
 		const data = {
 			title: state.title,
 			description: state.description,
 			price: state.price,
 			images: state.images,
-			productCategory: state.productCategory,
+			productCategory: productCat,
 			properties: state.productProperties,
 		};
+
 		e.preventDefault();
 		if (_id) {
 			//update
@@ -109,28 +116,22 @@ export default function ProductForm({
 			}
 
 			const res = await axios.post("/api/upload", data);
-			setImages((oldImages) => {
-				return [...oldImages, ...res.data.links];
-			});
+			const newImages = [...state.images, ...res.data.links];
+			dispatch({ type: "CHANGE_IMAGES", payload: newImages });
 			setIsUploading(false);
 		}
 	}
-	//funtion to make work of the sortable table
-	function updateImagesOrder(images) {
-		//setImages(images);
-	}
 
 	function setProductProp(propName, value) {
-		setProductProperties((prev) => {
-			const newProductProps = { ...prev };
-			newProductProps[propName] = value;
-			return newProductProps;
+		dispatch({
+			type: "SET_PRODUCT_PROPERTIES",
+			payload: { propName, value },
 		});
 	}
 
 	//show and display the categories from the catery and his parents
 	const propertiesToFill = [];
-	if (state.categories.length > 0 && productCategory) {
+	if (state.categories.length > 0 && state.productCategory) {
 		let categoryInfo = state.categories.find(
 			({ _id }) => _id === state.productCategory
 		);
@@ -173,7 +174,12 @@ export default function ProductForm({
 				id='productCategory'
 				className='mb-3'
 				value={state.productCategory}
-				onChange={(ev) => setProductCategory(ev.target.value)}>
+				onChange={(ev) => {
+					dispatch({
+						type: "CHANGE_INPUT",
+						payload: { name: "productCategory", value: ev.target.value },
+					});
+				}}>
 				<option value=''>Uncategorized</option>
 				{state.categories.length > 0 &&
 					state.categories.map((category) => (
@@ -186,13 +192,14 @@ export default function ProductForm({
 			</select>
 			{propertiesToFill.length > 0 &&
 				propertiesToFill.map((p) => (
-					<div
-						key={p._id}
-						className=''>
-						<label>{p.name[0].toUpperCase() + p.name.substring(1)}</label>
+					<div key={p._id}>
+						<label htmlFor={state.productProperties[p.name]}>
+							{p.name[0].toUpperCase() + p.name.substring(1)}
+						</label>
 						<div>
 							<select
-								// value={productProperties[p.name]}
+								id={state.productProperties[p.name]}
+								value={state.productProperties[p.name]}
 								onChange={(ev) => setProductProp(p.name, ev.target.value)}>
 								{p.value.map((value) => (
 									<option
@@ -216,7 +223,9 @@ export default function ProductForm({
 				<ReactSortable
 					className='flex flex-wrap gap-1'
 					list={state.images}
-					setList={updateImagesOrder}>
+					setList={(newImages) => {
+						dispatch({ type: "CHANGE_IMAGES", payload: newImages });
+					}}>
 					{
 						/* check for images and map the array*/
 						!!state.images?.length &&
@@ -269,6 +278,7 @@ export default function ProductForm({
 			<label htmlFor='description'>Product Description</label>
 			<textarea
 				name='description'
+				id='description'
 				placeholder='Product description'
 				autoComplete='off'
 				rows={10}
@@ -282,6 +292,7 @@ export default function ProductForm({
 			</label>
 			<input
 				name='price'
+				id='price'
 				placeholder='price'
 				type='number'
 				value={state.price}

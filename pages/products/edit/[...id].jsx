@@ -2,7 +2,7 @@ import Layout from "@/pages/components/Layout";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import ProductForm from "@/pages/components/ProductForm";
+import ProductForm from "@/pages/products/ProductForm";
 
 export default function EditProductPage() {
 	const [productInfo, setProductInfo] = useState(null);
@@ -21,7 +21,7 @@ export default function EditProductPage() {
 	return (
 		<Layout>
 			<div className='bg-primary/60 rounded-lg px-5 py-3 shadow-lg shadow-black/30 md:w-9/12 mx-auto md:mt-10 border border-white/20'>
-				<h2 className=''>Edit {name}</h2>
+				<h2 className='text-center mb-4'>Edit {name}</h2>
 				{productInfo && <ProductForm {...productInfo} />}
 			</div>
 		</Layout>

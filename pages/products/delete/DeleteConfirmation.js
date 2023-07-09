@@ -10,12 +10,15 @@ export default function deleteConfirmation(data, page, updateFunction) {
 		title: `Are you sure?`,
 		text: `you want to delete the ${name.toUpperCase()}?`,
 		icon: "warning",
+		iconColor: "gold",
 		showCancelButton: true,
 		confirmButtonText: "yes, Delete!",
 		cancelButtonText: "Cancel",
 		focusCancel: true,
-		confirmButtonColor: "#1E3A8A",
-		cancelButtonColor: "#6c757d",
+		color: "#ebefdc",
+		background: "#62459F",
+		confirmButtonColor: "#463172",
+		cancelButtonColor: "#7778D1",
 	}).then(async (result) => {
 		if (result.isConfirmed) {
 			// when action is confirmed

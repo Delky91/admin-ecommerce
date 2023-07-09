@@ -61,6 +61,10 @@ aside {
 	@apply bg-bgFrom/30 rounded-md border border-white/20 shadow hover:shadow-md shadow-black/30 hover:shadow-black/50;
 }
 
+.btn-upload {
+	@apply w-24 h-24 flex flex-col items-center justify-center text-sm gap-1 text-txColor rounded-lg bg-bgTo/50 shadow border border-gray-200 hover:bg-bgTo cursor-pointer hover:shadow-md hover:shadow-black/40 transition-all duration-200 ease-in;
+}
+
 .inactiveLink {
 	@apply flex gap-1 p-1 hover:bg-white/10 rounded-md;
 }
@@ -74,10 +78,6 @@ aside {
 
 .sm-icon {
 	@apply w-4 h-4;
-}
-
-.btn-upload {
-	@apply w-24 h-24 flex flex-col items-center justify-center text-sm gap-1 text-txColor rounded-lg bg-bgTo/50 shadow border border-gray-200 hover:bg-bgTo cursor-pointer hover:shadow-md hover:shadow-black/40 transition-all duration-200 ease-in;
 }
 
 .tableContainer {
