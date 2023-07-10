@@ -20,7 +20,7 @@ export default function EditProductPage() {
 
 	return (
 		<Layout>
-			<div className='bg-primary/60 rounded-lg px-5 py-3 shadow-lg shadow-black/30 md:w-9/12 mx-auto md:mt-10 border border-white/20'>
+			<div className='tableContainer px-5 py-3 md:mt-10'>
 				<h2 className='text-center mb-4'>Edit {name}</h2>
 				{productInfo && <ProductForm {...productInfo} />}
 			</div>

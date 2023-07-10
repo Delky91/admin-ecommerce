@@ -81,7 +81,7 @@ aside {
 }
 
 .tableContainer {
-	@apply my-5 md:w-4/5 md:mx-auto rounded-lg shadow-lg shadow-black/40 border border-white/10;
+	@apply my-5 md:w-4/5 md:mx-auto rounded-lg shadow-lg shadow-black/40 border border-white/10 bg-primary/50;
 }
 
 table.basic {

@@ -4,6 +4,7 @@ import { useState, useEffect, useReducer } from "react";
 import { useRouter } from "next/router";
 import Spinner from "../components/Spinner";
 import { ReactSortable } from "react-sortablejs";
+import formReducer from "./ProductFormReducer";
 
 export default function ProductForm({
 	_id,
@@ -24,38 +25,17 @@ export default function ProductForm({
 		productProperties: assignedProperties || {},
 	};
 
-	const formReducer = (state, action) => {
-		switch (action.type) {
-			case "CHANGE_INPUT": //title, desc, price, category, props
-				return {
-					...state,
-					[action.payload.name]: action.payload.value,
-				};
-			case "CHANGE_IMAGES": //images
-				return {
-					...state,
-					images: action.payload,
-				};
-			case "LOAD_CATEGORIES":
-				return {
-					...state,
-					categories: action.payload,
-				};
-			case "SET_PRODUCT_PROPERTIES":
-				return {
-					...state,
-					productProperties: {
-						...state.productProperties,
-						[action.payload.propName]: action.payload.value,
-					},
-				};
-			default:
-				return state;
-		}
-	};
-
 	//USEREDUCER
 	const [state, dispatch] = useReducer(formReducer, INITIAL_STATE);
+	const {
+		title,
+		description,
+		productCategory,
+		price,
+		images,
+		categories,
+		productProperties,
+	} = state;
 	const [goToProduct, setGoToProduct] = useState(false);
 	const [isUploading, setIsUploading] = useState(false);
 	const router = useRouter();
@@ -78,16 +58,15 @@ export default function ProductForm({
 
 	async function saveProduct(e) {
 		//check if category is value "" so we can changed to null  or the value that have
-		const productCat =
-			state.productCategory === "" ? null : state.productCategory;
+		const productCat = productCategory === "" ? null : productCategory;
 
 		const data = {
-			title: state.title,
-			description: state.description,
-			price: state.price,
-			images: state.images,
+			title: title,
+			description: description,
+			price: price,
+			images: images,
 			productCategory: productCat,
-			properties: state.productProperties,
+			properties: productProperties,
 		};
 
 		e.preventDefault();
@@ -116,7 +95,7 @@ export default function ProductForm({
 			}
 
 			const res = await axios.post("/api/upload", data);
-			const newImages = [...state.images, ...res.data.links];
+			const newImages = [...images, ...res.data.links];
 			dispatch({ type: "CHANGE_IMAGES", payload: newImages });
 			setIsUploading(false);
 		}
@@ -129,16 +108,19 @@ export default function ProductForm({
 		});
 	}
 
+	const handleDeleteImage = (link) => {
+		const updatedImages = images.filter((image) => image !== link);
+		dispatch({ type: "CHANGE_IMAGES", payload: updatedImages });
+	};
+
 	//show and display the categories from the catery and his parents
 	const propertiesToFill = [];
-	if (state.categories.length > 0 && state.productCategory) {
-		let categoryInfo = state.categories.find(
-			({ _id }) => _id === state.productCategory
-		);
+	if (categories.length > 0 && productCategory) {
+		let categoryInfo = categories.find(({ _id }) => _id === productCategory);
 		propertiesToFill.push(...categoryInfo.properties);
 		//this while check for any parent of a category until they dont have one
 		while (categoryInfo?.parent?._id) {
-			let parentCategory = state.categories.find(
+			let parentCategory = categories.find(
 				({ _id }) => _id === categoryInfo?.parent?._id
 			);
 			propertiesToFill.push(...parentCategory.properties);
@@ -162,7 +144,7 @@ export default function ProductForm({
 				name='title'
 				placeholder='product name'
 				className='mb-3'
-				value={state.title}
+				value={title}
 				onChange={handleTextChange}
 			/>
 			<label
@@ -173,7 +155,7 @@ export default function ProductForm({
 			<select
 				id='productCategory'
 				className='mb-3'
-				value={state.productCategory}
+				value={productCategory}
 				onChange={(ev) => {
 					dispatch({
 						type: "CHANGE_INPUT",
@@ -181,8 +163,8 @@ export default function ProductForm({
 					});
 				}}>
 				<option value=''>Uncategorized</option>
-				{state.categories.length > 0 &&
-					state.categories.map((category) => (
+				{categories.length > 0 &&
+					categories.map((category) => (
 						<option
 							key={category._id}
 							value={category._id}>
@@ -193,13 +175,13 @@ export default function ProductForm({
 			{propertiesToFill.length > 0 &&
 				propertiesToFill.map((p) => (
 					<div key={p._id}>
-						<label htmlFor={state.productProperties[p.name]}>
+						<label htmlFor={productProperties[p.name]}>
 							{p.name[0].toUpperCase() + p.name.substring(1)}
 						</label>
 						<div>
 							<select
-								id={state.productProperties[p.name]}
-								value={state.productProperties[p.name]}
+								id={productProperties[p.name]}
+								value={productProperties[p.name]}
 								onChange={(ev) => setProductProp(p.name, ev.target.value)}>
 								{p.value.map((value) => (
 									<option
@@ -222,22 +204,40 @@ export default function ProductForm({
 				{/* sort images with the mouse need a list and a funtion to work */}
 				<ReactSortable
 					className='flex flex-wrap gap-1'
-					list={state.images}
+					list={images}
 					setList={(newImages) => {
 						dispatch({ type: "CHANGE_IMAGES", payload: newImages });
 					}}>
 					{
 						/* check for images and map the array*/
-						!!state.images?.length &&
-							state.images.map((link) => (
+						!!images?.length &&
+							images.map((link) => (
 								<div
 									key={link}
-									className='h-24 bg-white shadow border border-gray-200 rounded-lg'>
-									<img
-										src={link}
-										alt='producto'
-										className='rounded-lg'
-									/>
+									className='relative inline-block'>
+									<div className='h-24 bg-white shadow border border-gray-200 rounded-lg'>
+										<img
+											src={link}
+											alt='producto'
+											className='rounded-lg'
+										/>
+										<button
+											onClick={() => handleDeleteImage(link)}
+											className='absolute top-1 right-1 rounded-full hover:bg-mid text-bgFrom bg-gray-800 border border-txColor/50 hover:border-txColor'>
+											<svg
+												xmlns='http://www.w3.org/2000/svg'
+												viewBox='0 0 24 24'
+												fill='none'
+												strokeWidth='1.5'
+												stroke='currentColor'
+												className='sm-icon'>
+												<path
+													strokeLinecap='round'
+													strokeLinejoin='round'
+													d='M6 18L18 6M6 6l12 12'></path>
+											</svg>
+										</button>
+									</div>
 								</div>
 							))
 					}
@@ -282,7 +282,7 @@ export default function ProductForm({
 				placeholder='Product description'
 				autoComplete='off'
 				rows={10}
-				value={state.description}
+				value={description}
 				onChange={handleTextChange}
 			/>
 			<label
@@ -295,7 +295,7 @@ export default function ProductForm({
 				id='price'
 				placeholder='price'
 				type='number'
-				value={state.price}
+				value={price}
 				onChange={handleTextChange}
 			/>
 			<button
