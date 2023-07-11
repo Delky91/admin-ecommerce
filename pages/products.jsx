@@ -83,7 +83,7 @@ export default function Products() {
 			<div className='py-3 mt-3 md:ml-[10%]'>
 				<Link
 					className='btn btn-layout'
-					href={"./products/new"}>
+					href={"./products/new/new"}>
 					Add new product
 				</Link>
 			</div>
