@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-h2 {
-	@apply text-txColor font-bold uppercase;
-}
-
 input,
 textarea,
 select {
@@ -18,7 +14,9 @@ select:focus {
 	@apply border-primary/10 bg-primary/70;
 }
 
-label {
+label,
+p,
+h2 {
 	@apply text-txColor;
 }
 
@@ -29,63 +27,9 @@ img {
 aside {
 	@apply text-txColor md:bg-primary/60 w-full h-screen bg-primary;
 }
-.btn {
-	@apply transition-all duration-200 ease-in px-4 text-txColor;
-}
-
-.bgBackground {
-	@apply bg-gradient-to-tr from-bgFrom via-bgTo  to-bgColor;
-}
-
-.btn-login {
-	@apply flex gap-2  py-2 rounded-lg border border-white/20 hover:border-white/70 shadow shadow-primary hover:shadow-c-hover bg-secundary/50 hover:bg-secundary/90;
-}
-
-.btn-delete {
-	@apply bg-primary/30 rounded-md py-1 border border-white/20 hover:bg-primary/90 hover:shadow-md hover:border-white/50;
-}
-
-.btn-edit {
-	@apply rounded-md py-1 px-6 border border-white/20 bg-secundary/50 hover:shadow-md shadow-primary hover:bg-secundary;
-}
-
-.btn-layout {
-	@apply bg-primary/50 hover:bg-mid/50 rounded-full py-1  shadow shadow-black/40 hover:shadow-md hover:shadow-black/60 border border-white/20;
-}
-
-.btn-nav {
-	@apply bg-bgTo/30 shadow shadow-black/20 hover:shadow-md py-1 rounded-full border border-white/20 hover:bg-bgTo/60 hover:shadow-black/40;
-}
-
-.btn-remove {
-	@apply bg-bgFrom/30 rounded-md border border-white/20 shadow hover:shadow-md shadow-black/30 hover:shadow-black/50;
-}
-
-.btn-upload {
-	@apply w-24 h-24 flex flex-col items-center justify-center text-sm gap-1 text-txColor rounded-lg bg-bgTo/50 shadow border border-gray-200 hover:bg-bgTo cursor-pointer hover:shadow-md hover:shadow-black/40 transition-all duration-200 ease-in;
-}
-
-.inactiveLink {
-	@apply flex gap-1 p-1 hover:bg-white/10 rounded-md;
-}
-.activeLink {
-	@apply inactiveLink bg-white/10 text-txColor border border-secundary/10 shadow;
-}
-
-.icon {
-	@apply w-6 h-6;
-}
-
-.sm-icon {
-	@apply w-4 h-4;
-}
-
-.tableContainer {
-	@apply my-5 md:w-4/5 md:mx-auto rounded-lg shadow-lg shadow-black/40 border border-white/10 bg-primary/50;
-}
 
 table.basic {
-	@apply w-full bg-primary/40 rounded-lg;
+	@apply w-full rounded-lg;
 }
 table.basic thead tr td {
 	@apply text-sm text-txColor uppercase border-b border-white/20 font-bold text-center;
@@ -106,4 +50,29 @@ table.basic button {
 
 #categoryTable thead tr td {
 	@apply text-center py-2;
+}
+
+.bgBackground {
+	@apply bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-950 to-black;
+}
+
+.btn {
+}
+
+.inactiveLink {
+	@apply flex gap-1 p-1 hover:bg-white/10 rounded-md;
+}
+.activeLink {
+	@apply inactiveLink bg-white/10 text-txColor border border-secundary/10 shadow;
+}
+
+.icon {
+	@apply w-6 h-6;
+}
+
+.sm-icon {
+	@apply w-4 h-4;
+}
+
+.tableContainer {
 }
