@@ -101,7 +101,7 @@ export default function Categories() {
 			<div className='flex flex-col gap-2'>
 				<h2 className='text-center'>Categories</h2>
 				<div className='tableContainer bg-primary/40'>
-					<p className='text-txColor my-2 pl-3 text-lg'>
+					<p className='pl-3 my-2 text-lg text-txColor'>
 						{editedCategory
 							? `Edit category ${editedCategory.name.toUpperCase()}`
 							: "Create new category"}
@@ -140,10 +140,10 @@ export default function Categories() {
 								}
 							</select>
 						</div>
-						<div className='mb-2 px-3'>
-							<p className='block text-txColor mb-2'>Properties</p>
+						<div className='px-3 mb-2'>
+							<p className='block mb-2 text-txColor'>Properties</p>
 							<button
-								className='btn btn-edit text-sm mb-4'
+								className='mb-4 text-sm btn btn-edit'
 								type='button'
 								onClick={addProperty}>
 								Add new property
@@ -172,7 +172,7 @@ export default function Categories() {
 											}
 										/>
 										<button
-											className='btn-remove btn mb-2'
+											className='mb-2 btn-remove btn'
 											type='button'
 											onClick={() => removeProperty(index)}>
 											Remove
@@ -180,12 +180,11 @@ export default function Categories() {
 									</div>
 								))}
 						</div>
-						<div className='inline-block mb-2 mt-4'>
+						<div className='inline-block mt-4 mb-2'>
 							{editedCategory && (
 								<button
 									type='button'
-									className='btn border ml-3 rounded-md border-white/20 hover:bg-bgTo
-									hover:shadow hover:shadow-black/30'
+									className='ml-3 border rounded-md btn border-white/20 hover:bg-bgTo hover:shadow hover:shadow-black/30'
 									onClick={() => {
 										//clear the form
 										setEditedCategory(null);
@@ -197,7 +196,7 @@ export default function Categories() {
 								</button>
 							)}
 							<button
-								className='btn border ml-4 bg-bgTo/40 border-white/20 rounded-md hover:shadow-md hover:shadow-black/30 hover:bg-bgTo/80'
+								className='ml-4 border rounded-md btn bg-bgTo/40 border-white/20 hover:shadow-md hover:shadow-black/30 hover:bg-bgTo/80'
 								type='submit'>
 								Save
 							</button>
@@ -231,7 +230,7 @@ export default function Categories() {
 											</td>
 											<td>
 												<button
-													className='btn btn-edit my-1 lg:my-0'
+													className='my-1 btn btn-edit lg:my-0'
 													onClick={() => editCategory(category)}>
 													<svg
 														xmlns='http://www.w3.org/2000/svg'

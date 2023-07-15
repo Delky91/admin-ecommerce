@@ -20,8 +20,8 @@ export default function EditProductPage() {
 
 	return (
 		<Layout>
-			<div className='tableContainer px-5 py-3 md:mt-10'>
-				<h2 className='text-center mb-4'>Edit {name}</h2>
+			<div className='px-5 py-3 tableContainer md:mt-10'>
+				<h2 className='mb-4 text-center'>Edit {name}</h2>
 				{productInfo && <ProductForm {...productInfo} />}
 			</div>
 		</Layout>

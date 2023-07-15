@@ -20,12 +20,12 @@ export default function Products() {
 
 	return (
 		<Layout>
-			<h2 className='md:ml-2 text-center'>Products</h2>
+			<h2 className='text-center md:ml-2'>Products</h2>
 			<div className='tableContainer'>
 				<table className='basic'>
 					<thead>
 						<tr>
-							<td className='py-2 w-1/2'>Product name</td>
+							<td className='w-1/2 py-2'>Product name</td>
 							<td className=''>Options</td>
 						</tr>
 					</thead>
@@ -36,8 +36,8 @@ export default function Products() {
 								className={
 									index !== products.length - 1 ? "border-b border-white/10" : ""
 								}>
-								<td className='text-txColor pl-4'>{product.title}</td>
-								<td className='flex gap-1 border-l border-white/20 py-1 justify-center'>
+								<td className='pl-4 text-txColor'>{product.title}</td>
+								<td className='flex justify-center gap-1 py-1 border-l border-white/20'>
 									<Link
 										href={"/products/edit/" + product._id}
 										className='btn btn-edit'>
@@ -57,7 +57,7 @@ export default function Products() {
 										Edit
 									</Link>
 									<button
-										className='btn btn-delete flex items-center'
+										className='flex items-center btn btn-delete'
 										onClick={() => deleteConfirmation(product, page, fetchProduct)}>
 										<svg
 											xmlns='http://www.w3.org/2000/svg'
@@ -87,7 +87,7 @@ export default function Products() {
 					Add new product
 				</Link>
 			</div>
-			<p className='text-center text-txColor font-bold'>
+			<p className='font-bold text-center text-txColor'>
 				ESTE DEBE SER CAMBIADO POR CARD EN VERSION FINAL
 			</p>
 		</Layout>

@@ -4,9 +4,9 @@ import ProductForm from "../ProductForm";
 export default function NewProduct() {
 	return (
 		<Layout>
-			<div className='bg-primary/60 rounded-lg px-5 py-3 shadow-lg shadow-black/30 md:w-9/12 mx-auto md:mt-10 border border-white/20'>
+			<div className='px-5 py-3 mx-auto border rounded-lg shadow-lg bg-primary/60 shadow-black/30 md:w-9/12 md:mt-10 border-white/20'>
 				<span className='flex justify-center'>
-					<h1 className='mb-4 text-xl text-txColor font-bold'>New Product</h1>
+					<h1 className='mb-4 text-xl font-bold text-txColor'>New Product</h1>
 				</span>
 				<ProductForm />
 			</div>

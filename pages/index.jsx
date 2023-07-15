@@ -7,11 +7,11 @@ export default function Home() {
 
 	return (
 		<Layout>
-			<div className=' text-blue-900 flex justify-between'>
+			<div className='flex justify-between text-blue-900 '>
 				<h2>
 					Hello, <b>{session?.user?.name}</b>
 				</h2>
-				<div className='flex bg-gray-300 gap-1 text-black rounded-lg overflow-hidden'>
+				<div className='flex gap-1 overflow-hidden text-black bg-gray-300 rounded-lg'>
 					<img
 						src={session?.user?.image}
 						alt='user photo'

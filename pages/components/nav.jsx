@@ -18,11 +18,11 @@ export default function Nav({ show, closeNav }) {
 		<aside
 			className={
 				(show ? "left-0 " : "-left-full ") +
-				"p-4 fixed top-0 md:static md:w-auto transition-all md:border-r md:border-white/20"
+				"p-4 fixed top-0 md:static md:w-auto transition-all md:border-r md:border-white/20 bg-bgColor/30"
 			}>
 			{show === true && (
 				<button
-					className='fixed hover:border rounded-full hover:border-white/20 p-1 hover:bg-secundary/50'
+					className='fixed p-1 rounded-full hover:border hover:border-white/20 hover:bg-secundary/50'
 					onClick={() => closeNav()}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
@@ -38,7 +38,7 @@ export default function Nav({ show, closeNav }) {
 					</svg>
 				</button>
 			)}
-			<div className='mb-5 mr-4 flex justify-center border-b border-white/40 pb-5'>
+			<div className='flex justify-center pb-5 mb-5 mr-4 border-b border-white/40'>
 				<Logo />
 			</div>
 
@@ -137,9 +137,9 @@ export default function Nav({ show, closeNav }) {
 					</svg>
 					Settings
 				</Link>
-				<div className='rounded-full mx-auto mt-5 w-2/3'>
+				<div className='w-2/3 mx-auto mt-5 rounded-full'>
 					<button
-						className='btn btn-nav flex gap-2 justify-center mx-auto w-full'
+						className='flex justify-center w-full gap-2 mx-auto border py-1 rounded-full border-white/20 hover:bg-sky-900/50 hover:shadow-md hover:shadow-white/10 active:bg-sky-700'
 						onClick={() => logout()}>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'

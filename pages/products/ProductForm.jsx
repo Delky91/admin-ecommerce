@@ -200,7 +200,7 @@ export default function ProductForm({
 				className='mb-1'>
 				Photos
 			</label>
-			<div className='mb-3 flex flex-wrap gap-1'>
+			<div className='flex flex-wrap gap-1 mb-3'>
 				{/* sort images with the mouse need a list and a funtion to work */}
 				<ReactSortable
 					className='flex flex-wrap gap-1'
@@ -215,7 +215,7 @@ export default function ProductForm({
 								<div
 									key={link}
 									className='relative inline-block'>
-									<div className='h-24 bg-white shadow border border-gray-200 rounded-lg'>
+									<div className='h-24 bg-white border border-gray-200 rounded-lg shadow'>
 										<img
 											src={link}
 											alt='producto'
@@ -223,7 +223,7 @@ export default function ProductForm({
 										/>
 										<button
 											onClick={() => handleDeleteImage(link)}
-											className='absolute top-1 right-1 rounded-full hover:bg-mid text-bgFrom bg-gray-800 border border-txColor/50 hover:border-txColor'>
+											className='absolute bg-gray-800 border rounded-full top-1 right-1 hover:bg-mid text-bgFrom border-txColor/50 hover:border-txColor'>
 											<svg
 												xmlns='http://www.w3.org/2000/svg'
 												viewBox='0 0 24 24'
@@ -245,7 +245,7 @@ export default function ProductForm({
 				{
 					/* loading animation when uploading photos */
 					isUploading && (
-						<div className='h-24 flex items-center'>
+						<div className='flex items-center h-24'>
 							<Spinner />
 						</div>
 					)
@@ -299,7 +299,7 @@ export default function ProductForm({
 				onChange={handleTextChange}
 			/>
 			<button
-				className='btn btn-login mx-auto w-60 mt-3 mb-2 justify-center'
+				className='justify-center mx-auto mt-3 mb-2 btn btn-login w-60'
 				type='submit'>
 				Save
 			</button>

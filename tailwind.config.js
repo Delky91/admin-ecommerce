@@ -17,6 +17,14 @@ module.exports = {
 			boxShadow: {
 				"c-hover": "0px 0px 4px 1px rgba(255,255,255, 0.3)",
 			},
+			backgroundImage: {
+				"layout-bg":
+					"url(https://lomb-next-ecommerce.s3.amazonaws.com/1689398007562.webp)",
+			},
+			blur: {
+				xs: "2px",
+				xxs: "1px",
+			},
 		},
 	},
 	plugins: [],

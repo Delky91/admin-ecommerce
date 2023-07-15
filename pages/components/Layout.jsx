@@ -1,8 +1,10 @@
+/* eslint-disable @next/next/no-img-element */
 import { useSession, signIn, signOut } from "next-auth/react";
 import Nav from "./nav.jsx";
 import { useState } from "react";
 import Logo from "./Logo.jsx";
 import Head from "next/head.js";
+import Image from "next/image.js";
 
 export default function Layout({ children }) {
 	const { data: session } = useSession();
@@ -32,13 +34,15 @@ export default function Layout({ children }) {
 						content='ecommerce, shop, portfolio'
 					/>
 				</Head>
-				<div className='bgBackground w-screen h-screen flex justify-center flex-col'>
-					<div className='border rounded-xl bg-slate-400 bg-opacity-75 px-16 shadow-lg py-10 backdrop-blur-md max-sm:px-8 md:mx-auto w-90% mx-4'>
-						<h2 className='mb-5 font-bold text-3xl'>Login</h2>
-						<p className='mb-10'>Login with your google account.</p>
-						<div className='flex justify-center'>
+				<div className='flex flex-col justify-center w-screen h-screen bgBackground flex-wrap'>
+					<div className='flex md:flex-row flex-col'>
+						<div className='md:pl-5 max-sm:px-8 ml-auto'>
+							<h2 className='mb-5 text-3xl font-bold'>Welcome back!</h2>
+							<p className='mb-10'>
+								Login with your google account to login to your admin panel.
+							</p>
 							<button
-								className='flex gap-2 border px-3 py-2 rounded-full w-full justify-center bg-gray-100 text-secundary backdrop-blur-md bg-opacity-80 shadow hover:shadow-black/50  shadow-black/50 hover:bg-opacity-100 transition-colors duration-200 active:bg-bgColor active:text-txColor hover:shadow-md'
+								className='flex gap-3 px-3 py-2 bg-white/80 text-black rounded-lg hover:bg-white hover:shadow-lg'
 								onClick={() => signIn("google")}>
 								<svg
 									xmlns='http://www.w3.org/2000/svg'
@@ -66,6 +70,8 @@ export default function Layout({ children }) {
 								Sign in with Google
 							</button>
 						</div>
+
+						<div className='max-w-md w-[400px] mr-auto md:ml-12 border rounded-lg bg-layout-bg bg-center bg-no-repeat bg-cover h-[400px]'></div>
 					</div>
 				</div>
 			</>
@@ -73,17 +79,17 @@ export default function Layout({ children }) {
 	}
 
 	return (
-		<div className='bgBackground min-h-screen'>
-			<div className='md:hidden flex items-center'>
+		<div className='min-h-screen bgBackground'>
+			<div className='flex items-center md:hidden'>
 				<button
 					type='button'
-					className='fixed hover:border rounded-full p-1 hover:border-white/20 left-4 top-2 hover:bg-bgFrom/20'
+					className='fixed p-1 rounded-full hover:border hover:border-white/20 left-4 top-2 hover:bg-bgFrom/20'
 					onClick={() => setShowNav(true)}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 24 24'
 						fill='currentColor'
-						className='icon text-white'>
+						className='text-white icon'>
 						<path
 							fillRule='evenodd'
 							d='M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z'
@@ -92,16 +98,16 @@ export default function Layout({ children }) {
 					</svg>
 				</button>
 
-				<div className='flex grow justify-center md:mr-6 mt-3'>
+				<div className='flex justify-center mt-3 grow md:mr-6'>
 					<Logo />
 				</div>
 			</div>
-			<div className=' flex'>
+			<div className='flex '>
 				<Nav
 					show={showNav}
 					closeNav={closeNav}
 				/>
-				<div className=' flex-grow p-4'>{children}</div>
+				<div className='flex-grow p-4 '>{children}</div>
 			</div>
 		</div>
 	);
