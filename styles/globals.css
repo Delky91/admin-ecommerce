@@ -9,13 +9,13 @@ body {
 input,
 textarea,
 select {
-	@apply border border-white/20 rounded-md p-1 w-full text-txColor shadow-sm mb-2 bg-secundary/20 placeholder:italic placeholder:text-txColor/60;
+	@apply border border-black/10 rounded-md p-1 w-full text-txColor shadow-sm mb-2 bg-bgColor placeholder:italic placeholder:text-txColor/60;
 }
 
 input:focus,
 textarea:focus,
 select:focus {
-	@apply border-primary/10 bg-primary/70;
+	@apply bg-bgColor text-txColor;
 }
 
 label,
@@ -48,8 +48,12 @@ table.basic button {
 	@apply text-txColor text-sm py-1 rounded-md inline-flex gap-1 mx-1 items-center mt-1 md:mt-0;
 }
 
+table thead {
+	@apply bg-tableHead;
+}
+
 #categoryTable td {
-	@apply w-1/3;
+	@apply w-[20%];
 }
 
 #categoryTable thead tr td {
@@ -72,4 +76,8 @@ table.basic button {
 
 .sm-icon {
 	@apply w-4 h-4;
+}
+
+.tableContainer {
+	@apply bg-white md:w-3/4 md:mx-auto rounded-lg shadow shadow-black/20 mt-5;
 }

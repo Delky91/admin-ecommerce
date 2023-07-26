@@ -9,9 +9,7 @@ export default function Categories() {
 	const [parentCategory, setParentCategory] = useState("");
 	const [editedCategory, setEditedCategory] = useState(null);
 	const [categories, setCategories] = useState([]);
-	//properties states
 	const [properties, setProperties] = useState([]);
-	//other var
 	const page = "categories";
 
 	useEffect(() => {
@@ -98,10 +96,12 @@ export default function Categories() {
 	}
 	return (
 		<Layout>
-			<div className='flex flex-col gap-2'>
-				<h2 className='text-center'>Categories</h2>
-				<div className='tableContainer bg-primary/40'>
-					<p className='pl-3 my-2 text-lg text-txColor'>
+			<div className='flex flex-col gap-2 mt-5'>
+				<h2 className='text-center p-0 md:pl-1 text-lg font-bold mb-2'>
+					Categories
+				</h2>
+				<div className='tableContainer'>
+					<p className='pl-3 my-2 text-md font-semibold text-txColor'>
 						{editedCategory
 							? `Edit category ${editedCategory.name.toUpperCase()}`
 							: "Create new category"}
@@ -116,12 +116,11 @@ export default function Categories() {
 								placeholder={"Category name"}
 								onChange={(ev) => setName(ev.target.value)}
 								value={name}
-								className=' placeholder-white/50 placeholder:italic'
+								className=' placeholder-txColor/50 placeholder:italic'
 							/>
 							<select
 								value={parentCategory}
-								onChange={(ev) => setParentCategory(ev.target.value)}
-								className='placeholder-white/50 placeholder:italic'>
+								onChange={(ev) => setParentCategory(ev.target.value)}>
 								<option
 									value=''
 									className=''>
@@ -205,6 +204,9 @@ export default function Categories() {
 				</div>
 				{!editedCategory && (
 					<div className='tableContainer'>
+						<p className='pl-3 my-2 text-md font-semibold text-txColor'>
+							Existing categories
+						</p>
 						<table
 							className='basic'
 							id='categoryTable'>
