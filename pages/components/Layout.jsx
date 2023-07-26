@@ -82,7 +82,7 @@ export default function Layout({ children }) {
 					show={showNav}
 					closeNav={closeNav}
 				/>
-				<div className='flex-grow p-4 '>{children}</div>
+				<div className='flex-grow md:p-4 py-4 px-2 '>{children}</div>
 			</div>
 		</div>
 	);

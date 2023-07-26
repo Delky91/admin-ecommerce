@@ -14,6 +14,7 @@ module.exports = {
 				txColor: "#292929",
 				txInactive: "#808191",
 				tableHead: "#F2F4FF",
+				tableBg: "#F8F8F8",
 				accent: "#4CE13F",
 			},
 			boxShadow: {

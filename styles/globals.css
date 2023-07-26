@@ -33,10 +33,10 @@ aside {
 }
 
 table.basic {
-	@apply w-full rounded-lg;
+	@apply w-full bg-tableBg/80;
 }
 table.basic thead tr td {
-	@apply text-sm text-txColor uppercase border-b border-white/20 font-bold text-center;
+	@apply text-sm text-txColor capitalize border-b border-white/20 font-bold pl-4;
 }
 
 table.basic tbody tr td {
@@ -48,16 +48,8 @@ table.basic button {
 	@apply text-txColor text-sm py-1 rounded-md inline-flex gap-1 mx-1 items-center mt-1 md:mt-0;
 }
 
-table thead {
-	@apply bg-tableHead;
-}
-
-#categoryTable td {
-	@apply w-[20%];
-}
-
-#categoryTable thead tr td {
-	@apply text-center py-2;
+#categoryTable tr td {
+	@apply py-2;
 }
 
 .btn {
@@ -79,5 +71,5 @@ table thead {
 }
 
 .tableContainer {
-	@apply bg-white md:w-3/4 md:mx-auto rounded-lg shadow shadow-black/20 mt-5;
+	@apply bg-white md:w-3/4 md:mx-auto rounded-lg shadow shadow-black/20 mt-5 px-1 pb-1.5;
 }
