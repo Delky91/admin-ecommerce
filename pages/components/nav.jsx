@@ -138,9 +138,9 @@ export default function Nav({ show, closeNav }) {
 					</svg>
 					Settings
 				</Link>
-				<div className='w-2/3 mx-auto mt-5 rounded-full'>
+				<div className='w-2/3 mx-auto mt-5'>
 					<button
-						className='flex justify-center w-full gap-2 mx-auto border py-1 rounded-full border-white/20 hover:bg-sky-900/50 hover:shadow-md hover:shadow-white/10 active:bg-sky-700'
+						className='flex justify-center w-full gap-2 mx-auto  py-1 rounded-full hover:text-primary'
 						onClick={() => logout()}>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
