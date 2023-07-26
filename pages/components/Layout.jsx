@@ -77,7 +77,7 @@ export default function Layout({ children }) {
 					<Logo />
 				</div>
 			</div>
-			<div className='flex '>
+			<div className='flex'>
 				<Nav
 					show={showNav}
 					closeNav={closeNav}
