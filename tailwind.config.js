@@ -8,11 +8,12 @@ module.exports = {
 	theme: {
 		extend: {
 			colors: {
-				primary: "#f7d564",
-				secundary: "#020717",
-				bgColor: "#172554",
-				txColor: "#e8edfd",
-				accent: "#1541d1",
+				primary: "#475BE8",
+				secundary: "#F29A2E",
+				bgColor: "#FAFAFA",
+				txColor: "#292929",
+				txInactive: "#808191",
+				accent: "#4CE13F",
 			},
 			boxShadow: {
 				"c-hover": "0px 0px 4px 1px rgba(255,255,255, 0.3)",
