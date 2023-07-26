@@ -18,11 +18,11 @@ export default function Nav({ show, closeNav }) {
 		<aside
 			className={
 				(show ? "left-0 " : "-left-full ") +
-				"p-4 fixed top-0 md:static md:w-auto transition-all md:border-r md:border-white/20 bg-bgColor/30"
+				"p-4 fixed top-0 md:static md:w-auto transition-all md:border-r md:border-black/10 bg-white"
 			}>
 			{show === true && (
 				<button
-					className='fixed p-1 rounded-full hover:border hover:border-white/20 hover:bg-secundary/50'
+					className='fixed px-1 rounded-full hover:border hover:border-txColor/10 hover:bg-txColor/10'
 					onClick={() => closeNav()}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'
@@ -30,7 +30,7 @@ export default function Nav({ show, closeNav }) {
 						fill='none'
 						strokeWidth='1.5'
 						stroke='currentColor'
-						className='icon'>
+						className='icon text-txColor'>
 						<path
 							strokeLinecap='round'
 							strokeLinejoin='round'
@@ -38,7 +38,7 @@ export default function Nav({ show, closeNav }) {
 					</svg>
 				</button>
 			)}
-			<div className='flex justify-center pb-5 mb-5 mr-4 border-b border-white/40'>
+			<div className='flex justify-center pb-5 mb-5 mr-4 border-b border-black/20'>
 				<Logo />
 			</div>
 
@@ -47,6 +47,7 @@ export default function Nav({ show, closeNav }) {
 					href={"/"}
 					className={pathname === "/" ? "activeLink" : "inactiveLink"}>
 					<svg
+						id='HomeSVG'
 						xmlns='http://www.w3.org/2000/svg'
 						viewBox='0 0 24 24'
 						fill='currentColor'

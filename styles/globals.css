@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-body{
+body {
 	@apply bg-bgColor;
 }
 
@@ -29,7 +29,7 @@ img {
 }
 
 aside {
-	@apply text-txColor md:bg-primary/60 w-full h-screen bg-primary;
+	@apply text-txColor w-full h-screen;
 }
 
 table.basic {
@@ -56,18 +56,14 @@ table.basic button {
 	@apply text-center py-2;
 }
 
-.bgBackground {
-	@apply bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-blue-950 to-black;
-}
-
 .btn {
 }
 
 .inactiveLink {
-	@apply flex gap-1 p-1 hover:bg-white/10 rounded-md;
+	@apply flex gap-1.5 py-1 pl-2 hover:bg-white/10 rounded-md text-txInactive;
 }
 .activeLink {
-	@apply inactiveLink bg-white/10 text-txColor border border-secundary/10 shadow;
+	@apply flex gap-1.5 py-1 pl-2 rounded-lg bg-primary text-white shadow shadow-black/50;
 }
 
 .icon {
@@ -76,7 +72,4 @@ table.basic button {
 
 .sm-icon {
 	@apply w-4 h-4;
-}
-
-.tableContainer {
 }
