@@ -48,7 +48,7 @@ table.basic tbody tr td {
 
 table.basic a,
 table.basic button {
-	@apply text-sm py-1 rounded-md inline-flex gap-1 mr-3 items-center;
+	@apply text-sm py-1 rounded-md inline-flex gap-1 mr-2 items-center;
 }
 
 #categoryTable tr td {
@@ -79,5 +79,5 @@ table.basic button {
 }
 
 .btn-delete {
-	@apply hover:bg-primary/10 hover:text-primary;
+	@apply hover:bg-primary/10 hover:text-primary px-1;
 }

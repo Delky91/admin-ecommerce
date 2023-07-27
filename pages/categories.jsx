@@ -140,9 +140,8 @@ export default function Categories() {
 							</select>
 						</div>
 						<div className='px-3 mb-2'>
-							<p className='block mb-2 text-txColor'>Properties</p>
 							<button
-								className='mb-4 text-sm btn btn-edit'
+								className='mb-4 text-md font-semibold text-txColor'
 								type='button'
 								onClick={addProperty}>
 								Add new property
@@ -155,7 +154,6 @@ export default function Categories() {
 										<input
 											type='text'
 											value={property.name}
-											className='mb-2'
 											onChange={(ev) =>
 												handlePropertyNameChange(index, property, ev.target.value)
 											}
@@ -164,14 +162,13 @@ export default function Categories() {
 										<input
 											type='text'
 											value={property.value}
-											className='mb-2'
 											placeholder='values, comma separated'
 											onChange={(ev) =>
 												handlePropertyValueChange(index, property, ev.target.value)
 											}
 										/>
 										<button
-											className='mb-2 btn-remove btn'
+											className='bg-primary rounded-lg mb-2 px-2 text-white hover:bg-primary/90'
 											type='button'
 											onClick={() => removeProperty(index)}>
 											Remove
@@ -195,7 +192,7 @@ export default function Categories() {
 								</button>
 							)}
 							<button
-								className='ml-4 border rounded-md btn bg-bgTo/40 border-white/20 hover:shadow-md hover:shadow-black/30 hover:bg-bgTo/80'
+								className='ml-4 rounded-md btn-edit text-sm py-1'
 								type='submit'>
 								Save
 							</button>
@@ -224,7 +221,7 @@ export default function Categories() {
 											<tr key={category._id}>
 												<td>{category.name}</td>
 												<td>{category?.parent?.name}</td>
-												<td className='text-center md:text-left'>
+												<td>
 													<button
 														className='my-1 btn-edit lg:my-0'
 														onClick={() => editCategory(category)}>
@@ -244,7 +241,7 @@ export default function Categories() {
 														Edit
 													</button>
 													<button
-														className='px-2 btn-delete'
+														className='btn-delete my-0.5'
 														onClick={() => {
 															deleteConfirmation(category, page, fetchCategories);
 														}}>
