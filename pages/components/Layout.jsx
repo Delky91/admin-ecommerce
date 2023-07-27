@@ -64,7 +64,7 @@ export default function Layout({ children }) {
 			<div className='flex items-center md:hidden'>
 				<button
 					type='button'
-					className='fixed p-1 rounded-full hover:border hover:border-txColor/10 left-4 top-2 hover:bg-txColor/10'
+					className='fixed p-1 rounded-full left-4 top-2 '
 					onClick={() => setShowNav(true)}>
 					<img
 						src='/images/hamburguer.svg'

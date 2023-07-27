@@ -33,26 +33,26 @@ aside {
 }
 
 table.basic {
-	@apply w-full bg-tableBg/80;
+	@apply w-full;
+}
+table.basic thead {
+	@apply bg-tableHead;
 }
 table.basic thead tr td {
-	@apply text-sm text-txColor capitalize border-b border-white/20 font-bold pl-4;
+	@apply text-sm text-txColor capitalize font-bold pl-4  w-1/3;
 }
 
 table.basic tbody tr td {
-	@apply text-txColor py-1 pl-4;
+	@apply text-txColor py-1 pl-4 bg-tableBg/80;
 }
 
 table.basic a,
 table.basic button {
-	@apply text-txColor text-sm py-1 rounded-md inline-flex gap-1 mx-1 items-center mt-1 md:mt-0;
+	@apply text-sm py-1 rounded-md inline-flex gap-1 mr-3 items-center;
 }
 
 #categoryTable tr td {
 	@apply py-2;
-}
-
-.btn {
 }
 
 .inactiveLink {
@@ -72,4 +72,12 @@ table.basic button {
 
 .tableContainer {
 	@apply bg-white md:w-3/4 md:mx-auto rounded-lg shadow shadow-black/20 mt-5 px-1 pb-1.5;
+}
+
+.btn-edit {
+	@apply px-3 bg-primary text-bgColor hover:bg-primary/90;
+}
+
+.btn-delete {
+	@apply hover:bg-primary/10 hover:text-primary;
 }

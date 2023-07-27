@@ -22,7 +22,7 @@ export default function Nav({ show, closeNav }) {
 			}>
 			{show === true && (
 				<button
-					className='fixed px-1 rounded-full hover:border hover:border-txColor/10 hover:bg-txColor/10'
+					className='fixed px-1 rounded-full '
 					onClick={() => closeNav()}>
 					<svg
 						xmlns='http://www.w3.org/2000/svg'

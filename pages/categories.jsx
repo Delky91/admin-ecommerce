@@ -207,7 +207,7 @@ export default function Categories() {
 						<p className='pl-3 my-2 text-md font-semibold text-txColor'>
 							Existing categories
 						</p>
-						<div className='rounded-lg w-[98%] border mx-auto mb-2'>
+						<div className='rounded-lg w-[98%] mx-auto mb-2 overflow-hidden'>
 							<table
 								className='basic'
 								id='categoryTable'>
@@ -224,9 +224,9 @@ export default function Categories() {
 											<tr key={category._id}>
 												<td>{category.name}</td>
 												<td>{category?.parent?.name}</td>
-												<td>
+												<td className='text-center md:text-left'>
 													<button
-														className='my-1 btn btn-edit lg:my-0'
+														className='my-1 btn-edit lg:my-0'
 														onClick={() => editCategory(category)}>
 														<svg
 															xmlns='http://www.w3.org/2000/svg'
@@ -244,7 +244,7 @@ export default function Categories() {
 														Edit
 													</button>
 													<button
-														className='px-4 btn btn-delete'
+														className='px-2 btn-delete'
 														onClick={() => {
 															deleteConfirmation(category, page, fetchCategories);
 														}}>
