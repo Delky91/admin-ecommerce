@@ -15,10 +15,9 @@ export default function deleteConfirmation(data, page, updateFunction) {
 		confirmButtonText: "yes, Delete!",
 		cancelButtonText: "Cancel",
 		focusCancel: true,
-		color: "#ebefdc",
-		background: "#62459F",
-		confirmButtonColor: "#463172",
-		cancelButtonColor: "#7778D1",
+		color: "#292929",
+		background: "#F2F4FF",
+		confirmButtonColor: "#475BE8",
 	}).then(async (result) => {
 		if (result.isConfirmed) {
 			// when action is confirmed
