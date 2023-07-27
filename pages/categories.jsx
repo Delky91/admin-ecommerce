@@ -101,7 +101,7 @@ export default function Categories() {
 					Categories
 				</h2>
 				<div className='tableContainer'>
-					<p className='pl-3 my-2 text-md font-semibold text-txColor'>
+					<p className='pl-3 my-2 text-md font-semibold'>
 						{editedCategory
 							? `Edit category ${editedCategory.name.toUpperCase()}`
 							: "Create new category"}
@@ -113,10 +113,10 @@ export default function Categories() {
 						<div className='flex gap-2 px-2 mb-4'>
 							<input
 								type='text'
-								placeholder={"Category name"}
+								placeholder={"name"}
 								onChange={(ev) => setName(ev.target.value)}
 								value={name}
-								className=' placeholder-txColor/50 placeholder:italic'
+								className=' placeholder-txColor/50 placeholder:italic dark:placeholder:text-white/40'
 							/>
 							<select
 								value={parentCategory}
@@ -141,7 +141,7 @@ export default function Categories() {
 						</div>
 						<div className='px-3 mb-2'>
 							<button
-								className='mb-4 text-md font-semibold text-txColor'
+								className='mb-4 text-md font-semibold text-txColor dark:text-white'
 								type='button'
 								onClick={addProperty}>
 								Add new property
@@ -158,6 +158,7 @@ export default function Categories() {
 												handlePropertyNameChange(index, property, ev.target.value)
 											}
 											placeholder='Property name (example: color)'
+											className='dark:text-white'
 										/>
 										<input
 											type='text'
@@ -201,14 +202,12 @@ export default function Categories() {
 				</div>
 				{!editedCategory && (
 					<div className='tableContainer'>
-						<p className='pl-3 my-2 text-md font-semibold text-txColor'>
-							Existing categories
-						</p>
+						<p className='pl-3 my-2 text-md font-semibold'>Existing categories</p>
 						<div className='rounded-lg w-[98%] mx-auto mb-2 overflow-hidden'>
 							<table
 								className='basic'
 								id='categoryTable'>
-								<thead className='bg-tableHead py-2'>
+								<thead className='py-2'>
 									<tr>
 										<td>Category name</td>
 										<td>Parent category</td>

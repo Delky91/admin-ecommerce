@@ -33,7 +33,7 @@ export default function Layout({ children }) {
 						content='ecommerce, shop, portfolio'
 					/>
 				</Head>
-				<div className='flex flex-col flex-wrap justify-center w-screen h-screen bg-bgColor'>
+				<div className='flex flex-col flex-wrap justify-center w-screen h-screen'>
 					<div className='flex flex-col md:flex-row'>
 						<div className='mx-auto md:pl-5 max-sm:px-8 md:ml-auto md:mr-2'>
 							<h2 className='mb-5 text-3xl font-bold'>Welcome back!</h2>
@@ -60,17 +60,23 @@ export default function Layout({ children }) {
 	}
 
 	return (
-		<div className='min-h-screen bg-bgColor'>
+		<div className='min-h-screen'>
 			<div className='flex items-center md:hidden'>
 				<button
 					type='button'
 					className='fixed p-1 rounded-full left-4 top-2 '
 					onClick={() => setShowNav(true)}>
-					<img
-						src='/images/hamburguer.svg'
-						alt='Open Nav Button'
-						className='text-txColor icon'
-					/>
+					<svg
+						xmlns='http://www.w3.org/2000/svg'
+						viewBox='0 0 24 24'
+						fill='currentColor'
+						className='text-txColor icon dark:text-white'>
+						<path
+							fillRule='evenodd'
+							d='M3 6.75A.75.75 0 013.75 6h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 6.75zM3 12a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75A.75.75 0 013 12zm0 5.25a.75.75 0 01.75-.75h16.5a.75.75 0 010 1.5H3.75a.75.75 0 01-.75-.75z'
+							clipRule='evenodd'
+						/>
+					</svg>
 				</button>
 
 				<div className='flex justify-center mt-3 grow md:mr-6'>

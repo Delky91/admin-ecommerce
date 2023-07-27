@@ -22,25 +22,21 @@ export default function Products() {
 		<Layout>
 			<h2 className='text-center md:ml-2'>Products</h2>
 			<div className='tableContainer'>
-				<table className='basic'>
+				<table className='basic rounded-md overflow-hidden'>
 					<thead>
 						<tr>
-							<td className='w-1/2 py-2'>Product name</td>
-							<td className=''>Options</td>
+							<td className='w-1/2 py-1'>Product name</td>
+							<td className='w-1/2 py-1'>Options</td>
 						</tr>
 					</thead>
 					<tbody>
 						{products.map((product, index) => (
-							<tr
-								key={product._id}
-								className={
-									index !== products.length - 1 ? "border-b border-white/10" : ""
-								}>
-								<td className='pl-4 text-txColor'>{product.title}</td>
-								<td className='flex justify-center gap-1 py-1 border-l border-white/20'>
+							<tr key={product._id}>
+								<td className='pl-4'>{product.title}</td>
+								<td className='flex gap-1 py-1'>
 									<Link
 										href={"/products/edit/" + product._id}
-										className='btn btn-edit'>
+										className='btn-edit my-1'>
 										<svg
 											xmlns='http://www.w3.org/2000/svg'
 											fill='none'
@@ -80,16 +76,13 @@ export default function Products() {
 					</tbody>
 				</table>
 			</div>
-			<div className='py-3 mt-3 md:ml-[10%]'>
+			<div className='py-3 mt-3 md:ml-[12.5%]'>
 				<Link
-					className='btn btn-layout'
+					className='btn-edit rounded-lg py-1 '
 					href={"./products/new/new"}>
 					Add new product
 				</Link>
 			</div>
-			<p className='font-bold text-center text-txColor'>
-				ESTE DEBE SER CAMBIADO POR CARD EN VERSION FINAL
-			</p>
 		</Layout>
 	);
 }

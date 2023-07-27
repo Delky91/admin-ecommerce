@@ -18,7 +18,7 @@ export default function Nav({ show, closeNav }) {
 		<aside
 			className={
 				(show ? "left-0 " : "-left-full ") +
-				"p-4 fixed top-0 md:static md:w-auto transition-all md:border-r md:border-black/10 bg-white"
+				"p-4 fixed top-0 md:static md:w-auto transition-all md:border-r md:border-black/10 bg-white dark:bg-dbgColor"
 			}>
 			{show === true && (
 				<button
@@ -30,7 +30,7 @@ export default function Nav({ show, closeNav }) {
 						fill='none'
 						strokeWidth='1.5'
 						stroke='currentColor'
-						className='icon text-txColor'>
+						className='icon text-txColor dark:text-white'>
 						<path
 							strokeLinecap='round'
 							strokeLinejoin='round'
@@ -140,7 +140,7 @@ export default function Nav({ show, closeNav }) {
 				</Link>
 				<div className='w-2/3 mx-auto mt-5'>
 					<button
-						className='flex justify-center w-full gap-2 mx-auto  py-1 rounded-full hover:text-primary'
+						className='flex justify-center w-full gap-2 mx-auto  py-1 rounded-full hover:text-primary dark:hover:text-white dark:text-white/70'
 						onClick={() => logout()}>
 						<svg
 							xmlns='http://www.w3.org/2000/svg'
