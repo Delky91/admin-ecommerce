@@ -16,46 +16,28 @@ export default function Layout({ children }) {
 
 	if (!session) {
 		return (
-			<>
-				<Head>
-					<title>My page</title>
-					<meta charset='UTF-8' />
-					<meta
-						name='viewport'
-						content='width=device-width, initial-scale=1.0'
-					/>
-					<meta
-						name='description'
-						content='Admin control panel for a ecommerce'
-					/>
-					<meta
-						name='keywords'
-						content='ecommerce, shop, portfolio'
-					/>
-				</Head>
-				<div className='flex flex-col flex-wrap justify-center w-screen h-screen'>
-					<div className='flex flex-col md:flex-row'>
-						<div className='mx-auto md:pl-5 max-sm:px-8 md:ml-auto md:mr-2'>
-							<h2 className='mb-5 text-3xl font-bold'>Welcome back!</h2>
-							<p className='mb-10'>
-								Login with your google account to login to your admin panel.
-							</p>
-							<button
-								className='flex gap-3 px-3 py-2 text-white rounded-lg bg-primary/90 hover:shadow-md hover:shadow-black/70 hover:bg-primary'
-								onClick={() => signIn("google")}>
-								<img
-									src='/images/GoogleLogo.svg'
-									alt='Google logo'
-									className='icon'
-								/>
-								Sign in with Google
-							</button>
-						</div>
-
-						<div className='mx-auto md:block hidden max-w-md w-[400px] md:mr-auto md:ml-2 border rounded-lg bg-layout-bg bg-center bg-no-repeat bg-cover h-[400px]'></div>
+			<div className='flex flex-col flex-wrap justify-center w-screen h-screen'>
+				<div className='flex flex-col md:flex-row'>
+					<div className='mx-auto md:pl-5 max-sm:px-8 md:ml-auto md:mr-2'>
+						<h2 className='mb-5 text-3xl font-bold'>Welcome back!</h2>
+						<p className='mb-10'>
+							Login with your google account to login to your admin panel.
+						</p>
+						<button
+							className='flex gap-3 px-3 py-2 text-white rounded-lg bg-primary/90 hover:shadow-md hover:shadow-black/70 hover:bg-primary'
+							onClick={() => signIn("google")}>
+							<img
+								src='/images/GoogleLogo.svg'
+								alt='Google logo'
+								className='icon'
+							/>
+							Sign in with Google
+						</button>
 					</div>
+
+					<div className='mx-auto md:block hidden max-w-md w-[400px] md:mr-auto md:ml-2 border rounded-lg bg-layout-bg bg-center bg-no-repeat bg-cover h-[400px]'></div>
 				</div>
-			</>
+			</div>
 		);
 	}
 
