@@ -3,7 +3,6 @@ import { useSession, signIn, signOut } from "next-auth/react";
 import Nav from "./nav.jsx";
 import { useState } from "react";
 import Logo from "./Logo.jsx";
-import Head from "next/head.js";
 
 export default function Layout({ children }) {
 	const { data: session } = useSession();

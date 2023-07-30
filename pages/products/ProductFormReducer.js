@@ -33,3 +33,29 @@ const formReducer = (state, action) => {
 	}
 };
 export default formReducer;
+
+//refactorizacion del reducer a probar
+export const formReducerRefactor = (state, action) => {
+	const { type, payload } = action;
+	const fn = {
+		CHANGE_INPUT: () => ({ ...state, [payload.name]: payload.value }),
+		CHANGE_IMAGES: () => ({ ...state, images: payload }),
+		LOAD_CATEGORIES: () => ({ ...state, categories: payload }),
+		SET_PRODUCT_PROPERTIES: () => ({
+			...state,
+			productProperties: {
+				...state.productProperties,
+				[payload.propName]: payload.value,
+			},
+		}),
+		DELETE_IMAGE: () => ({
+			...state,
+			images: state.images.filter((image) => image !== payload),
+		}),
+		["default"]: () => ({ ...state }),
+	};
+
+	const Funct = fn[type] || fn["default"];
+
+	return Funct();
+};

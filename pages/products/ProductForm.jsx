@@ -4,7 +4,6 @@ import { useState, useEffect, useReducer } from "react";
 import { useRouter } from "next/router";
 import Spinner from "../components/Spinner";
 import { ReactSortable } from "react-sortablejs";
-import formReducer from "./ProductFormReducer";
 
 export default function ProductForm({
 	_id,
@@ -25,8 +24,33 @@ export default function ProductForm({
 		productProperties: assignedProperties || {},
 	};
 
+	const formReducerRefactor = (state, action) => {
+		const { type, payload } = action;
+		const fn = {
+			CHANGE_INPUT: () => ({ ...state, [payload.name]: payload.value }),
+			CHANGE_IMAGES: () => ({ ...state, images: payload }),
+			LOAD_CATEGORIES: () => ({ ...state, categories: payload }),
+			SET_PRODUCT_PROPERTIES: () => ({
+				...state,
+				productProperties: {
+					...state.productProperties,
+					[payload.propName]: payload.value,
+				},
+			}),
+			DELETE_IMAGE: () => ({
+				...state,
+				images: state.images.filter((image) => image !== payload),
+			}),
+			["default"]: () => ({ ...state }),
+		};
+
+		const Funct = fn[type] || fn["default"];
+
+		return Funct();
+	};
+
 	//USEREDUCER
-	const [state, dispatch] = useReducer(formReducer, INITIAL_STATE);
+	const [state, dispatch] = useReducer(formReducerRefactor, INITIAL_STATE);
 	const {
 		title,
 		description,
@@ -252,27 +276,29 @@ export default function ProductForm({
 				}
 				<label
 					htmlFor='productImage'
-					className='btn-upload'>
-					<svg
-						xmlns='http://www.w3.org/2000/svg'
-						fill='none'
-						viewBox='0 0 24 24'
-						strokeWidth={1.5}
-						stroke='currentColor'
-						className='icon'>
-						<path
-							strokeLinecap='round'
-							strokeLinejoin='round'
-							d='M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5'
+					className='dark:bg-white/10 bg-black/10 p-2 rounded-md hover:bg-black/20 dark:hover:bg-white/20'>
+					<div className='mt-3 pb-2'>
+						<svg
+							xmlns='http://www.w3.org/2000/svg'
+							fill='none'
+							viewBox='0 0 24 24'
+							strokeWidth={1.5}
+							stroke='currentColor'
+							className='icon mx-auto'>
+							<path
+								strokeLinecap='round'
+								strokeLinejoin='round'
+								d='M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5'
+							/>
+						</svg>
+						<p>Add Imagen</p>
+						<input
+							type='file'
+							id='productImage'
+							className='hidden'
+							onChange={uploadImage}
 						/>
-					</svg>
-					<div>Add Imagen</div>
-					<input
-						type='file'
-						id='productImage'
-						className='hidden'
-						onChange={uploadImage}
-					/>
+					</div>
 				</label>
 			</div>
 			<label htmlFor='description'>Product Description</label>
@@ -298,11 +324,13 @@ export default function ProductForm({
 				value={price}
 				onChange={handleTextChange}
 			/>
-			<button
-				className='justify-center mx-auto mt-3 mb-2 btn btn-login w-60'
-				type='submit'>
-				Save
-			</button>
+			<div>
+				<button
+					className='justify-center mt-3 mb-2 btn-edit rounded-md py-1 px-1'
+					type='submit'>
+					Save
+				</button>
+			</div>
 		</form>
 	);
 }
