@@ -23,7 +23,7 @@ export default function Layout({ children }) {
 							Login with your google account to login to your admin panel.
 						</p>
 						<button
-							className='flex gap-3 px-3 py-2 text-white rounded-lg bg-primary/90 hover:shadow-md hover:shadow-black/70 hover:bg-primary'
+							className='flex gap-3 px-3 py-2 text-white rounded-lg bg-primary/80 hover:shadow hover:bg-primary'
 							onClick={() => signIn("google")}>
 							<img
 								src='/images/GoogleLogo.svg'

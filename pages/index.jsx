@@ -9,8 +9,8 @@ export default function Home() {
 	return (
 		<>
 			<Head>
-				<title>My page</title>
-				<meta charset='UTF-8' />
+				<title>E-commerce dashboard</title>
+				<meta charSet='UTF-8' />
 				<meta
 					name='viewport'
 					content='width=device-width, initial-scale=1.0'
